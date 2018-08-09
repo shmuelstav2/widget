@@ -504,6 +504,7 @@ function loadTxtPlugin() {
             for (var j = 0; j < matchedElements.length; j++) {
                 var currentItem = $(matchedElements[j]);
                 var wordId = currentItem.attr("word");
+                wordId = wordId.substring(0, str.length - 1);
                 let rating = dic[wordId].score;
                 var campaignId = dic[wordId].campaignId;
                 //   currentItem.find('#txtCScore').append(rating);
