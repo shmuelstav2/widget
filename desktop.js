@@ -503,7 +503,6 @@ function loadTxtPlugin() {
             var matchedElements = $('.findMe');
             for (var j = 0; j < matchedElements.length; j++) {
                 var currentItem = $(matchedElements[j]);
-                currentItem.setAttribute('word',wordId);
                 var wordId = currentItem.attr("word");
                 wordId = wordId.substring(0, wordId.length - 1);
                 currentItem.setAttribute('word',wordId);
