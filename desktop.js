@@ -474,7 +474,7 @@ function loadTxtPlugin() {
             for (var i = 0; i < words.length; i++) {
 
                 let word = words[i];
-                word+=" ";
+               // word+=" ";
                 try {
 
                     let selectorElements = $(selector);
