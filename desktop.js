@@ -478,7 +478,7 @@ function loadTxtPlugin() {
                 try {
 
                     let selectorElements = $(selector);
-                    let matchedParagraph = selectorElements.toArray().filter(element =>  $(element).text().indexOf(word) >= 0);
+                    let matchedParagraph = selectorElements.toArray().filter(element =>  $(element).text().toLowerCase().indexOf(word) >= 0);
                     let contents= $(matchedParagraph).contents().filter(function() {
                         return this.nodeType == 3
                     });
