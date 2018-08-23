@@ -147,7 +147,7 @@ function loadTxtPlugin() {
                 //'<span style="width: 65px;display: inline-block;height: 35px;position: relative;margin-left: 10px;border: 1px solid #ff9900;"><img width="30" height=35" src="amazon.jpg">'+'</span>'
                 //return html.replace(word, '<span class="findMe" word="' + word + '">' + word +
                 //    '<span class=""><img class="amazon-img" src=""><div class="font-star">★<span class="text-number">5</span></div></span>' );
-                return html.replace(new RegExp('('+word+" "+')', 'ig'), '<span class="findMe"  word="' + word + '"><u>' + word +
+                return html.replace(new RegExp('('+word+" "+')'|'('+word+","+')', 'ig'), '<span class="findMe"  word="' + word + '"><u>' + word +
                     '</u>' +
                     '<div class="icon-wrap" style="max-height:' + lineHeight + 'px;">' +
                     '<span style="margin:2px;">' +
