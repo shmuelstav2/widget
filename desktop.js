@@ -470,6 +470,11 @@ function loadTxtPlugin() {
 
         var exists = {}
 
+
+        function generateHtmlForWord(word, originalString) {
+            return '<span class="findMe" word="' + word + '"><u>' + originalString +'</u><div style="color:white;line-height:0.75;border-radius:5px;background:#FFA12B;display:inline-flex;align-items:center;margin-left:5px;"><span style="margin:2px;"><img class="amazonLogo"></span><div style="display:inline-flex;align-items:center;vertical-align: middle; border-radius: 5px;padding:2px;margin-right:1px;font-family:arial;color:orange;background:white;" id="txtCScore">★</div></div></span>'
+        }
+
         function formatDocuments(words) {
             for (var i = 0; i < words.length; i++) {
 
@@ -488,7 +493,7 @@ function loadTxtPlugin() {
                             return;
                         exists[word] = true;
 
-                        let newText = this.textContent.replace(new RegExp(word+" ", "ig"),'<span class="findMe"  word="' + word + '"><u>' + word +'</u><div style="color:white;line-height:0.75;border-radius:5px;background:#FFA12B;display:inline-flex;align-items:center;margin-left:5px;"><span style="margin:2px;"><img class="amazonLogo"></span><div style="display:inline-flex;align-items:center;vertical-align: middle; border-radius: 5px;padding:2px;margin-right:1px;font-family:arial;color:orange;background:white;" id="txtCScore">★</div></div></span>');
+                        let newText = this.textContent.replace(new RegExp('\\b' + word + '\\b', 'gi'), generateHtmlForWord(word, '$&'));
                         this.textContent='!@#@!';
                         // $($(matchedParagraph).contents()[2]).html(newText);
                         $(currElement).replaceWith(newText);
