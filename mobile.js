@@ -420,11 +420,12 @@ $(document).ready(function () {
         text-align: center;
         display:none;position: fixed;
         width: 100%;
+        height: 60%;
         bottom: 0;
         left: 0;
         background-color:white;
         z-index: 9;
-        overflow: scroll:
+        overflow: scroll;
     }
     #txtMinAd{
         box-sizing:border-box;
