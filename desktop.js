@@ -393,17 +393,14 @@ function loadTxtPlugin() {
             track_widget_closed = track('clw', mixpanel.txtrider);
             __track_iframe_loaded = track('iframe_loaded', mixpanel.txtrider);
 
-            let base = _data.website.campaigns[0];
-            let data = base.data;
-            let campaignId = base._id;
             selector = _data.website.selector;
-            for (var i = 0; i < data.length; i++) {
-                var currentItem = data[i];
-                var currentWord = currentItem.keyword;
-                dic[currentWord] = currentItem;
-                dic[currentWord].campaignId = campaignId;
-                dic[currentWord]._id = data._id;
-            }
+            _data.website.campaigns.forEach(campaign => {
+                campaign.data.forEach(item => {
+                    item.campaignId = campaign._id;
+                    dic[item.keyword] = item;
+                });
+            })
+            
             formatDocuments(Object.keys(dic));
         }
 
