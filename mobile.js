@@ -259,18 +259,6 @@ function loadTxtPlugin() {
         right:5px;
         top:5px;
     }
-    #expand {
-        position: absolute;
-        top: 0.5vw;
-        width: 10vw;
-        height: 10vw;
-        background: url('');
-        background-repeat: no-repeat;
-        background-size: 19px 34px;
-        background-size: cover;
-        background-position-x: -7px;
-        cursor: pointer;
-    }
     body {
         -webkit-text-size-adjust: 100%;
     }
@@ -286,20 +274,6 @@ function loadTxtPlugin() {
         position: relative;
         top: 5px;
         display:none;
-    }
-    #collapse {
-      position: absolute;
-      right: 25px;
-      top: 5px;
-      width: 25px;
-      z-index: 2;
-      height: 29px;
-      background: url('                                        ');
-      background-repeat: no-repeat;
-      background-size: 19px 34px;
-      background-size: cover;
-      background-position-x: -7px;
-      cursor: pointer;
     }
     .main-add-body {
         position: relative;width: 70vw;
@@ -319,7 +293,7 @@ function loadTxtPlugin() {
         margin-right: 5px;
         overflow: hidden;
         word-wrap: break-word;
-        width: 70vw;
+        width: calc(100% - 20px);
         font-weight: bold;
         text-overflow: ellipsis;
     }
@@ -330,8 +304,9 @@ function loadTxtPlugin() {
         font-size: 1.8vw;
         color: #404041;
         padding: 2vh 20px 20px 3vw;
-        background: no-repeat 10px center;
-        background-size: 100px;
+        background: url('` + base64Images.downArrow + `');
+        background-repeat: no-repeat;
+        background-position: calc(100% - 15px) center;
         background-color: #c2bca8;
         font-family: 'Raleway', sans-serif;
     }
@@ -344,8 +319,9 @@ function loadTxtPlugin() {
         padding: 1em;
         color: white;
         padding:1vh 20px 1vh 20px;
-        background: no-repeat 10px center;
-        background-size: 100px;
+        background: url('` + base64Images.upArrow + `');
+        background-repeat: no-repeat;
+        background-position: calc(100% - 20px) center;
         background-color: #faaf40;
         font-family: 'Raleway', sans-serif;
     }
@@ -452,7 +428,6 @@ function loadTxtPlugin() {
 
     var minAdHtml = `<div id="txtMinAd">
             <div style="position: relative;width: 70vw; display: inline-block;text-align: left;">
-                <div class="toggle" id="expand"></div>
                 <div class="smallAdHeader txtLogo">
                     <div class="ad-header">
                         <div style="font-size: 5vw; letter-spacing: -1px; font-weight: bold;color:#524a40; width: 65%;
