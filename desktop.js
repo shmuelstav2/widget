@@ -87,7 +87,7 @@ function loadTxtPlugin() {
             }
         });
         var dic = {};
-        var mainUrl = 'http://localhost:80/getAmazonUrl/';
+        var mainUrl = 'http://txtrider.co/getAmazonUrl/';
         let payLoad = {
             url: window.location.href
         };
