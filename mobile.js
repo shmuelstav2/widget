@@ -9,7 +9,7 @@ if (!$) {
 
 function loadTxtPlugin() {
 
-    
+
     const base64Images = {
         downArrow: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAdUlEQVQ4je3PMQrCMBiA0QdaqhQLHqJDhw4ODh7BwUHo4CHU+48dmoCIaGrdzFtCkp8vhOw/bSbMFlh9GjrgmBArcUOV8vIepzf3a9zDmmyH84vzKsTKKbGoQ/+wr43fLL6JRS0u2OKK5ZxY1ITY4hexLHsyAH2xBbdlIltjAAAAAElFTkSuQmCC',
         upArrow: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAaUlEQVQ4je3NMQuCUBiF4UezQSJQonBw8C81NDY4XJCI8P9PrSKIt3S87/RxvsN7SCSmlHvKAkbUW0UZBtwm9/VfWY4XLrM8oPlVdsAb1cK/RxsrK/DBeaX3RBcjvOMUOf7AMbKbSCzxBdkfBZfd+PGBAAAAAElFTkSuQmCC',
@@ -142,6 +142,8 @@ function loadTxtPlugin() {
         // display:inline;
         color:black;
         // width:80%;
+        overflow: hidden;
+        height: 60px;
     }
     .txtPrice {
         font-size: 20px;
@@ -163,22 +165,19 @@ function loadTxtPlugin() {
         display:inline;
     }
     .txtIframe {
-        height: 80%;
         font-size: 2.7vw;
         //margin-left: 5px;
-        margin-top: 15px;
         -webkit-overflow-scrolling:touch;
         width: 1px;
         min-width: 100%;
         width: 100%;
-        height: 100%;
         border: none;
+        height: 100%;
         vertical-align: top;
     }
 
     .txtIframeHolder {
         background: #ffffff;
-        margin-top: 80px;
     }
     
     .scroll_frame {
@@ -186,12 +185,11 @@ function loadTxtPlugin() {
         overflow-x: hidden;
         -webkit-overflow-scrolling:touch;
         width: 100%;
-        height: 200px;
+        height: 20vh;
         border: 1px solid #e0e0e0;
         font-size:1rem;
     }
     .buynow {
-        float: right;
         background: #faaf40;
         color: #524a40;
         width: 25vw;
@@ -303,7 +301,7 @@ function loadTxtPlugin() {
         font-weight: bold;
         font-size: 1.8vw;
         color: #404041;
-        padding: 2vh 20px 20px 3vw;
+        padding: 2vh 15px 15px 3vw;
         background: url('` + base64Images.downArrow + `');
         background-repeat: no-repeat;
         background-position: calc(100% - 15px) center;
@@ -365,6 +363,7 @@ function loadTxtPlugin() {
     `;
 
     var dic = {};
+    // var mainUrl = 'https://server.txtrider.com';
     var mainUrl = 'http://txtrider.co';
     $('head').append('<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">');
     if (debug) {
@@ -398,11 +397,16 @@ function loadTxtPlugin() {
                             <div class="txtProductName"></div>
                             </div>
                             <div class="stars"></div>
-                            <div class="txtPrice"></div>
-                            <a class="buyanchor" target="_blank" href="">
-                                <div class="buynow">Buy now
-                                </div>
-                            </a>
+                    </div>
+                    <div style="display: inline-flex;
+                    justify-content: space-between;
+                    width: 100%;
+                    padding: 5px 0px;">
+                    <div class="txtPrice"></div>
+                    <a class="buyanchor" target="_blank" href="">
+                        <div class="buynow">Buy now
+                        </div>
+                    </a>
                     </div>
                     <div class="txtIframeHolder">
                      <div class="scroll_frame">
@@ -466,8 +470,10 @@ function loadTxtPlugin() {
         $(minAdElement).slideDown();
         $(maxAdElement).slideUp();
     }
+    let selector;
 
     function success(data) {
+        selector = data.website.selector;
         var website = data.website;
         var campaigns = website.campaigns;
         for (var c = 0; c < campaigns.length; c++) {
@@ -488,40 +494,72 @@ function loadTxtPlugin() {
     }
     var matchedElements;
 
+    var exists = {}
 
-
-    function formatDocuments(words) {
-
+    function newFormatDocuments(words) {
         for (var i = 0; i < words.length; i++) {
             let word = words[i];
-            let matchedParagraph = $("p:contains(" + word + ")");
-            matchedParagraph.html(function (_, html) {
-                let lineHeight = $($(this).children()[0]).height();
-                //<span class="findMe" word="game" style="color: blue;position:relative">game<span style="width:50px;height: 10px;background-color:blue;position: absolute;left: -6px;top: 6px;"></span></span>
-                //'<span style="width: 65px;display: inline-block;height: 35px;position: relative;margin-left: 10px;border: 1px solid #ff9900;"><img width="30" height=35" src="amazon.jpg">'+'</span>'
-                //return html.replace(word, '<span class="findMe" word="' + word + '">' + word +
-                //    '<span class=""><img class="amazon-img" src=""><div class="font-star">★<span class="text-number">5</span></div></span>' );
-                return html.replace(new RegExp('('+word+" "+')'|'('+word+","+')', 'ig'), '<span class="findMe"  word="' + word + '"><u>' + word +
-                    '</u>' +
-                    '<div class="icon-wrap" style="max-height:' + lineHeight + 'px;">' +
-                    '<span style="margin:2px;">' +
-                    '<img class="amazonLogo">' +
-                    '</span>' +
-                    '<div class="star-font" id="txtCScore"><span class="starSymbol">★</span></div>' +
-                    '</div>' +
-                    '</span>');
-            });
+            try {
+                let selectorElements = $(selector);
+                let matchedParagraph = selectorElements.toArray().filter(element => $(element).text().toLowerCase().indexOf(word) >= 0);
+                let contents = $(matchedParagraph).contents().filter(function () {
+                    return this.nodeType == 3
+                });
+                contents.each(function (index, currElement) {
+                    let parent = $(this).parent();
+                    if (exists.hasOwnProperty(word))
+                        return;
+                    exists[word] = true;
+
+                    let newText = this.textContent.replace(new RegExp('\\b' + word + '\\b', 'gi'), generateHtmlForWord(word, '$&'));
+                    this.textContent = '!@#@!';
+                    $(currElement).replaceWith(newText);
+                });
+            } catch (err) {
+
+            }
         }
+    }
+
+    function formatDocuments(words) {
+        // for (var i = 0; i < words.length; i++) {
+        //     let word = words[i];
+        //     debugger;
+        //     let matchedParagraph = $("p:contains(" + word + ")");
+        //     matchedParagraph.html(function (_, html) {
+        //         let lineHeight = $($(this).children()[0]).height();
+        //         return html.replace(new RegExp('(' + word + " " + ')' | '(' + word + "," + ')', 'ig'), '<span class="findMe"  word="' + word + '"><u>' + word +
+        //             '</u>' +
+        //             '<div class="icon-wrap" style="max-height:' + lineHeight + 'px;">' +
+        //             '<span style="margin:2px;">' +
+        //             '<img class="amazonLogo">' +
+        //             '</span>' +
+        //             '<div class="star-font" id="txtCScore"><span class="starSymbol">★</span></div>' +
+        //             '</div>' +
+        //             '</span>');
+        //     });
+        // }
+        newFormatDocuments(words);
         //$(".amazon-img").attr('src', amazonLogo);
         $(".amazonLogo").attr('src', base64Images.amazonLogo);
         $(".amazonLogo").css('height', '4vw');
 
         matchedElements = document.getElementsByClassName('findMe');
-        for (var i = 0; i < matchedElements.length; i++) {
-            //$(matchedElements[i]).css('font-weight', 'bold');
-            //$(matchedElements[i]).css('text-decoration', 'underline');
-        }
+        for (var i = 0; i < matchedElements.length; i++) {}
         $(window).bind("scroll", onScroll);
+    }
+
+    function generateHtmlForWord(word) {
+        let lineHeight = 1;
+        return '<span class="findMe"  word="' + word + '"><u>' + word +
+            '</u>' +
+            '<div class="icon-wrap">' +
+            '<span style="margin:2px;">' +
+            '<img class="amazonLogo">' +
+            '</span>' +
+            '<div class="star-font" id="txtCScore"><span class="starSymbol">★</span></div>' +
+            '</div>' +
+            '</span>';
     }
 
     function onScroll() {
