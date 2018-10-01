@@ -98,15 +98,15 @@ function loadTxtPlugin() {
 
         function initWidgetCss() {
             let cssClassesRules = [{
-                class: '.txtContainer',
-                css: {
-                    'display': 'none',
-                    'position': 'absolute',
-                    'top': '0',
-                    'font-family': 'Arial, Helvetica, sans-serif',
-                    'background-color': 'white'
-                }
-            },
+                    class: '.txtContainer',
+                    css: {
+                        'display': 'none',
+                        'position': 'absolute',
+                        'top': '0',
+                        'font-family': 'Arial, Helvetica, sans-serif',
+                        'background-color': 'white'
+                    }
+                },
                 {
                     class: '.txtWidget',
                     css: {
@@ -400,7 +400,7 @@ function loadTxtPlugin() {
                     dic[item.keyword] = item;
                 });
             })
-            
+
             formatDocuments(Object.keys(dic));
         }
 
@@ -411,10 +411,10 @@ function loadTxtPlugin() {
         var inPopOut = false;
         object.on("mouseenter", () => {
             inPopOut = true;
-    })
+        })
         object.on("mouseleave", () => {
             inPopOut = false;
-    });
+        });
         var lastWordIn = "";
         var onMouseIn = function (element) {
             var currentWord = $(element).attr("word");
@@ -469,32 +469,28 @@ function loadTxtPlugin() {
 
 
         function generateHtmlForWord(word, originalString) {
-            return '<span class="findMe" word="' + word + '"><u>' + originalString +'</u><div style="color:white;line-height:0.75;border-radius:5px;background:#FFA12B;display:inline-flex;align-items:center;margin-left:5px;margin-right:5px;"><span style="margin:2px;"><img class="amazonLogo"></span><div style="display:inline-flex;align-items:center;vertical-align: middle; border-radius: 5px;padding:2px;margin-right:1px;font-family:arial;color:orange;background:white;" id="txtCScore">★</div></div></span>'
+            return '<span class="findMe" word="' + word + '"><u>' + originalString + '</u><div style="color:white;line-height:0.75;border-radius:5px;background:#FFA12B;display:inline-flex;align-items:center;margin-left:5px;margin-right:5px;"><span style="margin:2px;"><img class="amazonLogo"></span><div style="display:inline-flex;align-items:center;vertical-align: middle; border-radius: 5px;padding:2px;margin-right:1px;font-family:arial;color:orange;background:white;" id="txtCScore">★</div></div></span>'
         }
 
         function formatDocuments(words) {
             for (var i = 0; i < words.length; i++) {
-
-                let word = words[i];
-               // word+=" ";
+                exist={};
+                let word = words[i].toLowerCase();
+                // word+=" ";
                 try {
-
                     let selectorElements = $(selector);
-                    let matchedParagraph = selectorElements.toArray().filter(element =>  $(element).text().toLowerCase().indexOf(word) >= 0);
-                    let contents= $(matchedParagraph).contents().filter(function() {
+                    let matchedParagraph = selectorElements.toArray().filter(element => $(element).text().toLowerCase().indexOf(word) >= 0);
+                    let contents = $(matchedParagraph).contents().filter(function () {
                         return this.nodeType == 3
                     });
-                    contents.each(function(index,currElement){
-                        let parent=$(this).parent();
-                        if(exists.hasOwnProperty(word))
-                            return;
-                        exists[word] = true;
-
-                        let newText = this.textContent.replace(new RegExp('\\b' + word + '\\b', 'gi'), generateHtmlForWord(word, '$&'));
-                        this.textContent='!@#@!';
-                        // $($(matchedParagraph).contents()[2]).html(newText);
-                        $(currElement).replaceWith(newText);
-                        // $(matchedParagraph).html($(matchedParagraph).html().replace('!@#@!',newText));
+                    contents.each(function (index, currElement) {
+                        let parent = $(this).parent();
+                        let newText = this.textContent.replace(new RegExp('\\b' + word + '\\b', ''), generateHtmlForWord(word, '$&'));
+                        if (newText != this.textContent && !exists.hasOwnProperty(word)) {
+                            exists[word] = true;
+                            this.textContent = '!@#@!';
+                            $(currElement).replaceWith(newText);
+                        }
                     });
                 } catch (err) {
 
@@ -508,8 +504,7 @@ function loadTxtPlugin() {
                 var wordId = currentItem.attr("word");
                 //wordId = wordId.substring(0, wordId.length - 1);
                 //currentItem.setAttribute('word',wordId);
-                let rating = dic[wordId].score;
-                var campaignId = dic[wordId].campaignId;
+                var campaignId = dic[wordId] ? dic[wordId].campaignId: null;
                 //   currentItem.find('#txtCScore').append(rating);
                 currentItem.css("color", "blue");
                 var mouseIn = function (element) {
@@ -550,12 +545,12 @@ function loadTxtPlugin() {
             $iframe.attr("src", data.iframe);
             $iframe.on('load', () => {
                 track_iframe_loaded(word, campaignId);
-        });
+            });
             $(".txtBuyNow").click(() => {
                 track_buy_now(word, campaignId);
-            var win = window.open(data.productUrl, '_blank');
-            win.focus();
-        });
+                var win = window.open(data.productUrl, '_blank');
+                win.focus();
+            });
         };
 
         function isInView(_, el) {
@@ -578,7 +573,9 @@ function loadTxtPlugin() {
                 var $this = $(this);
                 var word = $this.attr('word');
                 viewed_closed_widgets[word] = true;
-                track_closed_widget_hover(word, dic[word].campaignId);
+                if(dic[word]){
+                    track_closed_widget_hover(word, dic[word].campaignId);
+                }
             })
         })
 

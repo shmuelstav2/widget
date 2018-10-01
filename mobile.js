@@ -1,6 +1,7 @@
 var debug = false;
 var debug = false;
 if (location.href.indexOf('rok') !== -1 || location.href.indexOf('localhost') !== -1) debug = true;
+debug = false;
 var testMock = JSON.parse(
     '{"website":{"url":"http://165.227.173.236:8082/index.html","selector":"p","campaigns":[{"data":[{"reviewsCount":"0","score":"0","image":"https://images-na.ssl-images-amazon.com/images/I/51TgbZXBWXL._SL75_.jpg","price":"$12.97","productName":"Hasbro Pie Face Game","productUrl":"https://www.amazon.com/Hasbro-B7063-Pie-Face-Game/dp/B010F029Y4?SubscriptionId=AKIAJCEN6ECJ6WBA52TA&tag=undefined&linkCode=xm2&camp=2025&creative=165953&creativeASIN=B010F029Y4","iframe":"https://www.amazon.com/reviews/iframe?akid=AKIAJCEN6ECJ6WBA52TA&alinkCode=xm2&asin=B010F029Y4&atag=undefined&exp=2017-12-21T11%3A29%3A00Z&summary=1&truncate=1000&v=2&sig=HLyCutfbxJTcYdkYuDlyBpGuayOYtRa3Gt82V5%252Bl1d0%253D","keyword":"game","asin":"B010F029Y4","lastIframeUpdate":"2017-12-16T18:43:59.156Z"},{"reviewsCount":"0","score":"0","image":"https://images-na.ssl-images-amazon.com/images/I/51YYD0i7J5L._SL75_.jpg","price":"$7.99","productName":"MLB New York Yankees Team Logo Baseball, Official, White","productUrl":"https://www.amazon.com/York-Yankees-Baseball-Official-White/dp/B00YCL7I1M?psc=1&SubscriptionId=AKIAJCEN6ECJ6WBA52TA&tag=undefined&linkCode=xm2&camp=2025&creative=165953&creativeASIN=B00YCL7I1M","iframe":"https://www.amazon.com/reviews/iframe?akid=AKIAJCEN6ECJ6WBA52TA&alinkCode=xm2&asin=B00YCL7I1M&atag=undefined&exp=2017-12-21T11%3A29%3A00Z&summary=1&truncate=1000&v=2&sig=DJ6VR4P1VLLFOIKmRtaE7TA929hcnWAbynrS2Wx%252BdMc%253D","keyword":"baseball","asin":"B00YCL7I1M","lastIframeUpdate":"2017-12-16T18:43:59.156Z"}]}]},"errCount":0}');
 if (!$) {
@@ -373,7 +374,7 @@ function loadTxtPlugin() {
         type: "POST",
         url: mainUrl + "/getAmazonUrl",
         data: {
-            "url": this.location.href
+            url: window.location.href
         },
         success: success,
         error: error
@@ -481,7 +482,7 @@ function loadTxtPlugin() {
             var data = campaigns[c].data;
             for (var i = 0; i < data.length; i++) {
                 var currentItem = data[i];
-                var currentWord = currentItem.keyword;
+                var currentWord = currentItem.keyword.toLowerCase();;
                 words.push(currentWord);
                 dic[currentWord] = currentItem;
             }
@@ -498,7 +499,8 @@ function loadTxtPlugin() {
 
     function newFormatDocuments(words) {
         for (var i = 0; i < words.length; i++) {
-            let word = words[i];
+            exist = {};
+            let word = words[i].toLowerCase();
             try {
                 let selectorElements = $(selector);
                 let matchedParagraph = selectorElements.toArray().filter(element => $(element).text().toLowerCase().indexOf(word) >= 0);
@@ -507,13 +509,12 @@ function loadTxtPlugin() {
                 });
                 contents.each(function (index, currElement) {
                     let parent = $(this).parent();
-                    if (exists.hasOwnProperty(word))
-                        return;
-                    exists[word] = true;
-
-                    let newText = this.textContent.replace(new RegExp('\\b' + word + '\\b', 'gi'), generateHtmlForWord(word, '$&'));
-                    this.textContent = '!@#@!';
-                    $(currElement).replaceWith(newText);
+                    let newText = this.textContent.replace(new RegExp('\\b' + word + '\\b', ''), generateHtmlForWord(word, '$&'));
+                    if (newText != this.textContent && !exists.hasOwnProperty(word)) {
+                        exists[word] = true;
+                        this.textContent = '!@#@!';
+                        $(currElement).replaceWith(newText);
+                    }
                 });
             } catch (err) {
 
