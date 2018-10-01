@@ -551,7 +551,7 @@ function loadTxtPlugin() {
 
     function generateHtmlForWord(word) {
         let lineHeight = 1;
-        return '<span class="findMe"  word="' + word + '"><u>' + word +
+        return '<span class="findMe"  word="' + word + '"><span style="display:inline-block;"><u>' + word +
             '</u>' +
             '<div class="icon-wrap">' +
             '<span style="margin:2px;">' +
@@ -559,7 +559,7 @@ function loadTxtPlugin() {
             '</span>' +
             '<div class="star-font" id="txtCScore"><span class="starSymbol">★</span></div>' +
             '</div>' +
-            '</span>';
+            '</span></span>';
     }
 
     function onScroll() {
