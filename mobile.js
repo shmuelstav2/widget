@@ -508,7 +508,7 @@ function loadTxtPlugin() {
                 });
                 contents.each(function (index, currElement) {
                     let parent = $(this).parent();
-                    let newText = this.textContent.replace(new RegExp('\\b' + word + '\\b', ''), generateHtmlForWord(word, '$&'));
+                    let newText = this.textContent.replace(new RegExp('\\b' + word + '\\b', 'i'), generateHtmlForWord(word, '$&'));
                     if (newText != this.textContent && !exists.hasOwnProperty(word)) {
                         exists[word] = true;
                         this.textContent = '!@#@!';

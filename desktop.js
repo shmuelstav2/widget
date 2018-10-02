@@ -80,18 +80,19 @@ function loadTxtPlugin() {
         if (!$) {
             var $ = jQuery;
         }
-
         $.extend($.expr[":"], {
             "containsNC": function (elem, i, match, array) {
                 return (elem.textContent || elem.innerText || "").toLowerCase().indexOf((match[3] || "").toLowerCase()) >= 0;
             }
         });
         var dic = {};
+        var lowcaseDic = {};
         var mainUrl = 'http://txtrider.co/getAmazonUrl/';
         let payLoad = {
             url: window.location.href
         };
         $.post(mainUrl, payLoad, function (data) {
+            420
             if (data && data.website && data.website.campaigns && data.website.campaigns.length > 0)
                 success(data);
         });
@@ -398,6 +399,7 @@ function loadTxtPlugin() {
                 campaign.data.forEach(item => {
                     item.campaignId = campaign._id;
                     dic[item.keyword] = item;
+                    lowcaseDic[item.keyword.toLowerCase()] = item.keyword;
                 });
             })
 
@@ -418,6 +420,7 @@ function loadTxtPlugin() {
         var lastWordIn = "";
         var onMouseIn = function (element) {
             var currentWord = $(element).attr("word");
+            currentWord=lowcaseDic[currentWord];
             campaignId = dic[currentWord].campaignId;
             track_widget_open(currentWord, campaignId);
             lastWordIn = currentWord;
@@ -434,7 +437,6 @@ function loadTxtPlugin() {
         var onMouseOut = function (event) {
             timerId = setInterval(function () {
                 if (!inPopOut) {
-
                     object.css('display', 'none');
                     //track_widget_closed(currentWord, campaignId);
                     clearInterval(timerId);
@@ -469,12 +471,12 @@ function loadTxtPlugin() {
 
 
         function generateHtmlForWord(word, originalString) {
-            return '<span class="findMe" word="' + word + '"><u>' + originalString + '</u><div style="color:white;line-height:0.75;border-radius:5px;background:#FFA12B;display:inline-flex;align-items:center;margin-left:5px;margin-right:5px;"><span style="margin:2px;"><img class="amazonLogo"></span><div style="display:inline-flex;align-items:center;vertical-align: middle; border-radius: 5px;padding:2px;margin-right:1px;font-family:arial;color:orange;background:white;" id="txtCScore">★</div></div></span>'
+            return '<span class="findMe" word="' + word + '"><span style="display:inline-block;"><u>' + originalString + '</u><div style="color:white;line-height:0.75;border-radius:5px;background:#FFA12B;display:inline-flex;align-items:center;margin-left:5px;margin-right:5px;"><span style="margin:2px;"><img class="amazonLogo"></span><div style="display:inline-flex;align-items:center;vertical-align: middle; border-radius: 5px;padding:2px;margin-right:1px;font-family:arial;color:orange;background:white;" id="txtCScore">★</div></div></span></span>'
         }
 
         function formatDocuments(words) {
             for (var i = 0; i < words.length; i++) {
-                exist={};
+                exist = {};
                 let word = words[i].toLowerCase();
                 // word+=" ";
                 try {
@@ -485,7 +487,7 @@ function loadTxtPlugin() {
                     });
                     contents.each(function (index, currElement) {
                         let parent = $(this).parent();
-                        let newText = this.textContent.replace(new RegExp('\\b' + word + '\\b', ''), generateHtmlForWord(word, '$&'));
+                        let newText = this.textContent.replace(new RegExp('\\b' + word + '\\b', 'i'), generateHtmlForWord(word, '$&'));
                         if (newText != this.textContent && !exists.hasOwnProperty(word)) {
                             exists[word] = true;
                             this.textContent = '!@#@!';
@@ -504,7 +506,8 @@ function loadTxtPlugin() {
                 var wordId = currentItem.attr("word");
                 //wordId = wordId.substring(0, wordId.length - 1);
                 //currentItem.setAttribute('word',wordId);
-                var campaignId = dic[wordId] ? dic[wordId].campaignId: null;
+                let originalWord = lowcaseDic[wordId];
+                var campaignId = dic[originalWord].campaignId;
                 //   currentItem.find('#txtCScore').append(rating);
                 currentItem.css("color", "blue");
                 var mouseIn = function (element) {
@@ -573,7 +576,7 @@ function loadTxtPlugin() {
                 var $this = $(this);
                 var word = $this.attr('word');
                 viewed_closed_widgets[word] = true;
-                if(dic[word]){
+                if (dic[word]) {
                     track_closed_widget_hover(word, dic[word].campaignId);
                 }
             })
