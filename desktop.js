@@ -420,7 +420,7 @@ function loadTxtPlugin() {
         var lastWordIn = "";
         var onMouseIn = function (element) {
             var currentWord = $(element).attr("word");
-            currentWord=lowcaseDic[currentWord];
+            currentWord = lowcaseDic[currentWord];
             campaignId = dic[currentWord].campaignId;
             track_widget_open(currentWord, campaignId);
             lastWordIn = currentWord;
@@ -549,6 +549,7 @@ function loadTxtPlugin() {
             $iframe.on('load', () => {
                 track_iframe_loaded(word, campaignId);
             });
+            $(".txtBuyNow").unbind( "click" );
             $(".txtBuyNow").click(() => {
                 track_buy_now(word, campaignId);
                 var win = window.open(data.productUrl, '_blank');
