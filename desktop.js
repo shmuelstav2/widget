@@ -117,15 +117,15 @@ function loadTxtPlugin() {
                         'position': 'relative'
                     }
                 },
-                {
-                    class: '.txtLogo',
-                    css: {
-                        'display': 'block',
-                        'width': '30%',
-                        'margin-top': '10px',
-                        'margin-left': '10px'
-                    }
-                },
+                // {
+                //     class: '.txtLogo',
+                //     css: {
+                //         'display': 'block',
+                //         'width': '30%',
+                //         'margin-top': '10px',
+                //         'margin-left': '10px'
+                //     }
+                // },
                 {
                     class: '.txtProduct',
                     css: {
@@ -408,7 +408,7 @@ function loadTxtPlugin() {
 
         function error(data) {}
 
-        var widgetHtml = ` <div class="txtContainer"> <div class="txtWidget"> <div class="txtHeader"> <img class="txtLogo"> <div class="txtProduct"> <img class="txtProductImg"> <div> <span class="txtTitle"></span> <span class="txtSubTitle"></span> <span class="txtPrice"></span> <div class="txtBuyNow">SHOP NOW</div></div></div></div><div class="txtLine"></div><div class="txtBody"> <iframe class="txtIframe"></iframe> </div><div class="txtFooter"> Powered by txtrider </div></div></div>`;
+        var widgetHtml = ` <div class="txtContainer"> <div class="txtWidget"> <div class="txtHeader"> <div class="txtProduct"> <img class="txtProductImg"> <div> <span class="txtTitle"></span> <span class="txtSubTitle"></span> <span class="txtPrice"></span> <div class="txtBuyNow">SHOP NOW</div></div></div></div><div class="txtLine"></div><div class="txtBody"> <iframe class="txtIframe"></iframe> </div><div class="txtFooter"> Powered by txtrider </div></div></div>`;
         var object = $(widgetHtml).appendTo('body');
         var inPopOut = false;
         object.on("mouseenter", () => {
@@ -540,7 +540,7 @@ function loadTxtPlugin() {
 
         function FormatAd(word, data, campaignId) {
             var $iframe = $(".txtIframe");
-            $('.txtLogo').attr("src", amazonLogoImg);
+            // $('.txtLogo').attr("src", amazonLogoImg);
             $('.txtTitle').text(data.productName);
             $('.txtTitle').text(data.productName);
             $('.txtPrice').text(data.price);
