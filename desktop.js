@@ -88,7 +88,7 @@ function loadTxtPlugin() {
         var dic = {};
         var lowcaseDic = {};
         var mainUrl = 'http://txtrider.co/getAmazonUrl/';
-        let payLoad = {
+        var payLoad = {
             url: window.location.href
         };
         $.post(mainUrl, payLoad, function (data) {
