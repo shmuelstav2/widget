@@ -105,7 +105,8 @@ function loadTxtPlugin() {
                         'position': 'absolute',
                         'top': '0',
                         'font-family': 'Arial, Helvetica, sans-serif',
-                        'background-color': 'white'
+                        'background-color': 'white',
+                         'max-width': 300px
                     }
                 },
                 {
