@@ -90,7 +90,8 @@ function loadTxtPlugin() {
         var lowcaseDic = {};
         var mainUrl = 'http://txtrider.co/getAmazonUrl/';
         var payLoad = {
-            url: window.location.href
+            // url: window.location.href
+            url: 'http://yabayeah.online'
         };
         $.post(mainUrl, payLoad, function (data) {
             420
@@ -118,6 +119,16 @@ function loadTxtPlugin() {
                     'border': '2px solid #E3A924',
                     'position': 'relative',
                     'background' : 'white'
+                }
+            },
+            {
+                class: '.headerContainer',
+                css: {
+                    'display': 'flex',
+                    'flex-direction': 'column',
+                    'align-items': 'flex-start',
+                    'width': '240px',
+                    'max-width': '240px',
                 }
             },
             {
@@ -422,7 +433,7 @@ function loadTxtPlugin() {
 
         function error(data) { }
 
-        var widgetHtml = ` <div class="txtContainer"> <div class="txtWidget"> <div class="txtHeader"> <div class="txtProduct"> <img class="txtProductImg"> <div> <span class="txtTitle"></span> <span class="txtSubTitle"></span> <span class="txtPrice"></span> <div class="txtBuyNow">SHOP NOW</div></div></div></div><div class="txtLine"></div><div class="txtBody"> <iframe class="txtIframe"></iframe> </div><div class="txtFooter"> Powered by txtrider </div></div></div>`;
+        var widgetHtml = ` <div class="txtContainer"> <div class="txtWidget"> <div class="txtHeader"> <div class="txtProduct"> <img class="txtProductImg"> <div class="headerContainer"> <span class="txtTitle"></span> <span class="txtSubTitle"></span> <span class="txtPrice"></span> <div class="txtBuyNow">SHOP NOW</div></div></div></div><div class="txtLine"></div><div class="txtBody"> <iframe class="txtIframe"></iframe> </div><div class="txtFooter"> Powered by txtrider </div></div></div>`;
         var object = $(widgetHtml).appendTo('body');
         var inPopOut = false;
         object.on("mouseenter", () => {
