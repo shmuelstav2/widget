@@ -9,7 +9,7 @@ function initMixPanel() {
                     return (l = a.match(RegExp(b + "=([^&]*)"))) ? l[1] : null
                 };
                 g && c(g, "state") && (i = JSON.parse(decodeURIComponent(c(g, "state"))), "mpeditor" === i.action && (b.sessionStorage.setItem("_mpcehash", g), history.replaceState(i.desiredHash || "", e.title, j.pathname + j.search)))
-            } catch (m) {}
+            } catch (m) { }
             var k, h;
             window.mixpanel = a;
             a._i = [];
@@ -107,113 +107,113 @@ function loadTxtPlugin() {
                     'background-color': 'white'
                 }
             },
-                {
-                    class: '.txtWidget',
-                    css: {
-                        'width': '350px',
-                        'font-size': '62.5%',
-                        'border': '2px solid #E3A924',
-                        'position': 'relative'
-                    }
-                },
-                {
-                    class: '.txtHeader',
-                    css: {
-                        'width': '350px',
-                        'background':'white'
-                    }
-                },
-                {
-                    class: '.txtLogo',
-                    css: {
-                        'display': 'block',
-                        'width': '30%',
-                        'margin-top': '10px',
-                        'margin-left': '10px'
-                    }
-                },
-                {
-                    class: '.txtProduct',
-                    css: {
-                        'display': 'flex',
-                        'align-items': 'flex-start',
-                        'padding': '10px'
-                    }
-                },
-                {
-                    class: '.txtProductImg',
-                    css: {
-                        'display': 'inline-block',
-                        'margin-right': '10px',
-                        'width': '30%'
-                    }
-                },
-                {
-                    class: '.txtTitle',
-                    css: {
-                        'display': 'block',
-                        'font-weight': 'bold',
-                        'font-size': '1rem'
-                    }
-                },
-                {
-                    class: '.txtSubTitle',
-                    css: {
-                        'display': 'block',
-                        'margin-top': '5px',
-                        'font-size': '1rem'
-                    }
-                },
-                {
-                    class: '.txtBuyNow',
-                    css: {
-                        'background': '-webkit-linear-gradient(#F1CE40, #E3A924)',
-                        'background': '-o-linear-gradient(#F1CE40, #E3A924)',
-                        'background': '-moz-linear-gradient(#F1CE40, #E3A924)',
-                        'background': 'linear-gradient(#F1CE40, #E3A924)',
-                        'border-radius': '3px',
-                        'padding': '2px 8px',
-                        'display': 'inline-block',
-                        'margin-top': '5px',
-                        'font-size': '0.8rem',
-                        'cursor': 'pointer'
-                    }
-                },
-                {
-                    class: '.txtLine',
-                    css: {
-                        'width': '90%',
-                        'height': '2px',
-                        'background-color': '#E3A924',
-                        'margin': '0 auto',
-                        'margin-top': '5px',
-                        'margin-bottom': '5px'
-                    }
-                },
-                {
-                    class: '.txtPrice',
-                    css: {
-                        'font-weight': 'bold',
-                        'color': '#C92B22',
-                        'font-size': '1.2rem',
-                        'margin-top': '10px',
-                        'display': 'block'
-                    }
-                },
-                {
-                    class: '.txtFooter',
-                    css: {
-                        'color': 'rgb(180, 180, 180)',
-                        'background-color': 'white',
-                        'padding-left': '5px'
-                    }
-                },
-                {
-                    class: '.txtIframe',
-                    css: {
-                        'width': 'calc(100% - 4px)'
-                    }
+            {
+                class: '.txtWidget',
+                css: {
+                    'width': '350px',
+                    'font-size': '62.5%',
+                    'border': '2px solid #E3A924',
+                    'position': 'relative'
                 }
+            },
+            {
+                class: '.txtHeader',
+                css: {
+                    'max-width': '350px',
+                    'background': 'white'
+                }
+            },
+            {
+                class: '.txtLogo',
+                css: {
+                    'display': 'block',
+                    'width': '30%',
+                    'margin-top': '10px',
+                    'margin-left': '10px'
+                }
+            },
+            {
+                class: '.txtProduct',
+                css: {
+                    'display': 'flex',
+                    'align-items': 'flex-start',
+                    'padding': '10px'
+                }
+            },
+            {
+                class: '.txtProductImg',
+                css: {
+                    'display': 'inline-block',
+                    'margin-right': '10px',
+                    'width': '30%'
+                }
+            },
+            {
+                class: '.txtTitle',
+                css: {
+                    'display': 'block',
+                    'font-weight': 'bold',
+                    'font-size': '1rem'
+                }
+            },
+            {
+                class: '.txtSubTitle',
+                css: {
+                    'display': 'block',
+                    'margin-top': '5px',
+                    'font-size': '1rem'
+                }
+            },
+            {
+                class: '.txtBuyNow',
+                css: {
+                    'background': '-webkit-linear-gradient(#F1CE40, #E3A924)',
+                    'background': '-o-linear-gradient(#F1CE40, #E3A924)',
+                    'background': '-moz-linear-gradient(#F1CE40, #E3A924)',
+                    'background': 'linear-gradient(#F1CE40, #E3A924)',
+                    'border-radius': '3px',
+                    'padding': '2px 8px',
+                    'display': 'inline-block',
+                    'margin-top': '5px',
+                    'font-size': '0.8rem',
+                    'cursor': 'pointer'
+                }
+            },
+            {
+                class: '.txtLine',
+                css: {
+                    'width': '90%',
+                    'height': '2px',
+                    'background-color': '#E3A924',
+                    'margin': '0 auto',
+                    'margin-top': '5px',
+                    'margin-bottom': '5px'
+                }
+            },
+            {
+                class: '.txtPrice',
+                css: {
+                    'font-weight': 'bold',
+                    'color': '#C92B22',
+                    'font-size': '1.2rem',
+                    'margin-top': '10px',
+                    'display': 'block'
+                }
+            },
+            {
+                class: '.txtFooter',
+                css: {
+                    'color': 'rgb(180, 180, 180)',
+                    'background-color': 'white',
+                    'padding-left': '5px'
+                }
+            },
+            {
+                class: '.txtIframe',
+                css: {
+                    'width': 'calc(100% - 4px)'
+                }
+            }
             ]
             let resetRule = {
                 'animation': 'none',
@@ -414,17 +414,17 @@ function loadTxtPlugin() {
             formatDocuments(Object.keys(dic));
         }
 
-        function error(data) {}
+        function error(data) { }
 
         var widgetHtml = ` <div class="txtContainer"> <div class="txtWidget"> <div class="txtHeader"> <img class="txtLogo"> <div class="txtProduct"> <img class="txtProductImg"> <div> <span class="txtTitle"></span> <span class="txtSubTitle"></span> <span class="txtPrice"></span> <div class="txtBuyNow">SHOP NOW</div></div></div></div><div class="txtLine"></div><div class="txtBody"> <iframe class="txtIframe"></iframe> </div><div class="txtFooter"> Powered by txtrider </div></div></div>`;
         var object = $(widgetHtml).appendTo('body');
         var inPopOut = false;
         object.on("mouseenter", () => {
             inPopOut = true;
-    })
+        })
         object.on("mouseleave", () => {
             inPopOut = false;
-    });
+        });
         var lastWordIn = "";
         var onMouseIn = function (element) {
             var currentWord = $(element).attr("word");
@@ -481,22 +481,22 @@ function loadTxtPlugin() {
             for (var i = 0; i < words.length; i++) {
 
                 let word = words[i];
-               // word+=" ";
+                // word+=" ";
                 try {
 
                     let selectorElements = $(selector);
-                    let matchedParagraph = selectorElements.toArray().filter(element =>  $(element).text().toLowerCase().indexOf(word) >= 0);
-                    let contents= $(matchedParagraph).contents().filter(function() {
+                    let matchedParagraph = selectorElements.toArray().filter(element => $(element).text().toLowerCase().indexOf(word) >= 0);
+                    let contents = $(matchedParagraph).contents().filter(function () {
                         return this.nodeType == 3
                     });
-                    contents.each(function(index,currElement){
-                        let parent=$(this).parent();
-                        if(exists.hasOwnProperty(word))
+                    contents.each(function (index, currElement) {
+                        let parent = $(this).parent();
+                        if (exists.hasOwnProperty(word))
                             return;
                         exists[word] = true;
 
-                        let newText = this.textContent.replace(new RegExp((word+'\\s|'+word+'[\\.,]'), "ig"),'<span class="findMe"  word="' + word + '"><u>' +'$&' +'</u><div style="color:white;line-height:0.75;border-radius:5px;background:#FFA12B;display:inline-flex;align-items:center;margin-left:5px;"><span style="margin:2px;"><img class="amazonLogo"></span><div style="display:inline-flex;align-items:center;vertical-align: middle; border-radius: 5px;padding:2px;margin-right:1px;font-family:arial;color:orange;background:white;" id="txtCScore">★</div></div></span>');
-                        this.textContent='!@#@!';
+                        let newText = this.textContent.replace(new RegExp((word + '\\s|' + word + '[\\.,]'), "ig"), '<span class="findMe"  word="' + word + '"><u>' + '$&' + '</u><div style="color:white;line-height:0.75;border-radius:5px;background:#FFA12B;display:inline-flex;align-items:center;margin-left:5px;"><span style="margin:2px;"><img class="amazonLogo"></span><div style="display:inline-flex;align-items:center;vertical-align: middle; border-radius: 5px;padding:2px;margin-right:1px;font-family:arial;color:orange;background:white;" id="txtCScore">★</div></div></span>');
+                        this.textContent = '!@#@!';
                         // $($(matchedParagraph).contents()[2]).html(newText);
                         $(currElement).replaceWith(newText);
                         // $(matchedParagraph).html($(matchedParagraph).html().replace('!@#@!',newText));
@@ -555,12 +555,12 @@ function loadTxtPlugin() {
             $iframe.attr("src", data.iframe);
             $iframe.on('load', () => {
                 track_iframe_loaded(word, campaignId);
-        });
+            });
             $(".txtBuyNow").click(() => {
                 track_buy_now(word, campaignId);
-            var win = window.open(data.productUrl, '_blank');
-            win.focus();
-        });
+                var win = window.open(data.productUrl, '_blank');
+                win.focus();
+            });
         };
 
         function isInView(_, el) {
