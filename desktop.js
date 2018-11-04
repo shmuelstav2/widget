@@ -117,6 +117,13 @@ function loadTxtPlugin() {
                     }
                 },
                 {
+                    class: '.txtHeader',
+                    css: {
+                        'width': '350px',
+                        'background':'white'
+                    }
+                },
+                {
                     class: '.txtLogo',
                     css: {
                         'display': 'block',
