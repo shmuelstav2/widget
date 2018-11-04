@@ -1,4 +1,5 @@
 function initMixPanel() {
+    //new version
     (function (e, a) {
         if (!a.__SV) {
             var b = window;
