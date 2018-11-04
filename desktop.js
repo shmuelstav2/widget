@@ -159,6 +159,8 @@ function loadTxtPlugin() {
                     'display': 'block',
                     'font-weight': 'bold',
                     'font-size': '1rem',
+                    'width': '240px',
+                    'max-width': '240px',
                     'white-space': 'pre-wrap'
                 }
             },
