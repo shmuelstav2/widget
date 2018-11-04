@@ -90,7 +90,8 @@ function loadTxtPlugin() {
         var lowcaseDic = {};
         var mainUrl = 'http://txtrider.co/getAmazonUrl/';
         var payLoad = {
-            url: window.location.href
+            // url: window.location.href
+            url: 'http://www.yabayeah.online'
         };
         $.post(mainUrl, payLoad, function (data) {
             420
@@ -452,6 +453,8 @@ function loadTxtPlugin() {
             position = element.offset();
             position = getPosition(element);
             clearInterval(timerId);
+            $('.txtTitle').css('max-width','240px');
+            $('.txtTitle').css('width', '240px');
             object.css('left', position.left);
             object.css('top', position.top - object.height());
             object.css('display', 'inline');
