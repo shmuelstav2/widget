@@ -117,7 +117,8 @@ function loadTxtPlugin() {
                     'width': '350px',
                     'font-size': '62.5%',
                     'border': '2px solid #E3A924',
-                    'position': 'relative'
+                    'position': 'relative',
+                    'background' : 'white'
                 }
             },
             {
