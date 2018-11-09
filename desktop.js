@@ -120,6 +120,14 @@ function loadTxtPlugin() {
                     'position': 'relative',
                     'background' : 'white'
                 }
+            },{
+                class: '.txtLogo'
+                css: {
+                   'display': 'block',
+                   'width': '30%!important',
+                   'margin-top': '10px',
+                   'margin-left': '10px'
+                   }  
             },
             {
                 class: '.headerContainer',
