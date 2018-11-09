@@ -120,8 +120,9 @@ function loadTxtPlugin() {
                     'position': 'relative',
                     'background' : 'white'
                 }
-            },{
-                class: '.txtLogo'
+            },
+            {
+                class: '.txtLogo',
                 css: {
                    'display': 'block',
                    'width': '30%!important',
