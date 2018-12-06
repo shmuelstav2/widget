@@ -130,6 +130,7 @@ function loadTxtPlugin() {
                     'display': 'block',
                     'width': '30%',
                     'margin-top': '10px',
+                    'max-width': '104px',
                     'margin-left': '10px'
                 }
             },
@@ -549,7 +550,6 @@ function loadTxtPlugin() {
         function FormatAd(word, data, campaignId) {
             var $iframe = $(".txtIframe");
             $('.txtLogo').attr("src", amazonLogoImg);
-            $('txtLogo').css({'width' : '104px'});
             $('.txtTitle').text(data.productName);
             $('.txtTitle').text(data.productName);
             $('.txtPrice').text(data.price);
