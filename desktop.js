@@ -127,6 +127,7 @@ function loadTxtPlugin() {
                    'display': 'block',
                    'width': '30%!important',
                    'margin-top': '10px',
+                   'max-width': '104px',
                    'margin-left': '10px'
                    }  
             },
