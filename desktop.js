@@ -549,6 +549,7 @@ function loadTxtPlugin() {
         function FormatAd(word, data, campaignId) {
             var $iframe = $(".txtIframe");
             $('.txtLogo').attr("src", amazonLogoImg);
+            $('txtLogo').css({'width' : '104px'});
             $('.txtTitle').text(data.productName);
             $('.txtTitle').text(data.productName);
             $('.txtPrice').text(data.price);
