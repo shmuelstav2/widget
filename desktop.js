@@ -1,5 +1,5 @@
 function initMixPanel() {
-    //new version
+    //new version 03/01/2019
     (function (e, a) {
         if (!a.__SV) {
             var b = window;
