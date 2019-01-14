@@ -1,3 +1,4 @@
+// NOTE: Styling issue on Safari was fixed (12/01/2019)
 function initMixPanel() {
     //new version 03/01/2019
     (function (e, a) {
@@ -114,9 +115,9 @@ function loadTxtPlugin() {
             {
                 class: '.txtWidget',
                 css: {
-                    'width': '350px',
+                    'width': '350px !important',
                     'font-size': '62.5%',
-                    'border': '2px solid #E3A924',
+                    'border': '2px solid #E3A924 !important',
                     'position': 'relative',
                     'background' : 'white'
                 }
@@ -125,10 +126,10 @@ function loadTxtPlugin() {
                 class: '.txtLogo',
                 css: {
                    'display': 'block',
-                   'width': '30%!important',
-                   'margin-top': '10px',
+                   'width': '30% !important',
+                   'margin-top': '10px !important',
                    'max-width': '104px',
-                   'margin-left': '10px'
+                   'margin-left': '10px !important'
                    }  
             },
             {
@@ -137,7 +138,7 @@ function loadTxtPlugin() {
                     'display': 'flex',
                     'flex-direction': 'column',
                     'align-items': 'flex-start',
-                    'width': '240px',
+                    'width': '240px !important',
                     'max-width': '240px',
                 }
             },
@@ -146,7 +147,7 @@ function loadTxtPlugin() {
                 css: {
                     'background': 'white',
                     'max-width': '345px',
-                    'width': '345px'
+                    'width': '345px !important'
                 }
             },
             // {
@@ -163,14 +164,14 @@ function loadTxtPlugin() {
                 css: {
                     'display': 'flex',
                     'align-items': 'flex-start',
-                    'padding': '10px'
+                    'padding': '10px !important'
                 }
             },
             {
                 class: '.txtProductImg',
                 css: {
                     'display': 'inline-block',
-                    'margin-right': '10px',
+                    'margin-right': '10px !important',
                     'width': '30%'
                 }
             },
@@ -201,9 +202,9 @@ function loadTxtPlugin() {
                     'background': '-moz-linear-gradient(#F1CE40, #E3A924)',
                     'background': 'linear-gradient(#F1CE40, #E3A924)',
                     'border-radius': '3px',
-                    'padding': '2px 8px',
+                    'padding': '2px 8px !important',
                     'display': 'inline-block',
-                    'margin-top': '5px',
+                    'margin-top': '5px !important',
                     'font-size': '0.8rem',
                     'cursor': 'pointer'
                 }
@@ -637,5 +638,3 @@ function loadTxtPlugin() {
 }
 initMixPanel();
 loadTxtPlugin();
-
-console.log('This is the test')
