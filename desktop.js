@@ -376,6 +376,8 @@ function loadTxtPlugin() {
                 $(element.class).css('display', "''");
                 $(element.class).css(element.css);
             }
+
+            console.log('just for testing...');
         }
         var selector;
 
