@@ -637,3 +637,5 @@ function loadTxtPlugin() {
 }
 initMixPanel();
 loadTxtPlugin();
+
+console.log('This is the test')
