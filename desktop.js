@@ -606,3 +606,5 @@ function loadTxtPlugin() {
 }
 initMixPanel();
 loadTxtPlugin();
+
+console.log('Dont worry! This is test msg.');
