@@ -62,7 +62,10 @@ function loadTxtPlugin() {
 
     //function track(){};
 
-
+    // NOTE: This is because of safari styling issue.
+    function forceUpdate() {
+        $("body").addClass("dummyClass").removeClass("dummyClass");
+    }
 
     function track_iframe_loaded(word, campaign) {
         if (locked_iframe_load[word]) return false;
@@ -404,6 +407,7 @@ function loadTxtPlugin() {
                 $(element.class).css('display', "''");
                 $(element.class).css(element.css);
             }
+            $("body").addClass("dummyClass").removeClass("dummyClass");
         }
         var selector;
 
@@ -470,6 +474,7 @@ function loadTxtPlugin() {
             object.css('top', position.top - object.height());
             object.css('display', 'inline');
             object.css('position', 'absolute');
+            $("body").addClass("dummyClass").removeClass("dummyClass");
         }
         var timerId;
         var onMouseOut = function (event) {
@@ -555,6 +560,7 @@ function loadTxtPlugin() {
                 }(currentItem);
                 currentItem.hover(mouseIn, onMouseOut);
             }
+            $("body").addClass("dummyClass").removeClass("dummyClass");
         }
         var scoreImgUrl = mainUrl + '/stars/';
         var formatCloseButton = false;
