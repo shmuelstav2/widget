@@ -1,6 +1,6 @@
 // NOTE: Styling issue on Safari was fixed (12/01/2019)
 function initMixPanel() {
-    //new version 03/01/2019
+    //new version 15/01/2019
     (function (e, a) {
         if (!a.__SV) {
             var b = window;
