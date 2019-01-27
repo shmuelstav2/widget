@@ -9,7 +9,7 @@ function initMixPanel() {
                     return (l = a.match(RegExp(b + "=([^&]*)"))) ? l[1] : null
                 };
                 g && c(g, "state") && (i = JSON.parse(decodeURIComponent(c(g, "state"))), "mpeditor" === i.action && (b.sessionStorage.setItem("_mpcehash", g), history.replaceState(i.desiredHash || "", e.title, j.pathname + j.search)))
-            } catch (m) { }
+            } catch (m) {}
             var k, h;
             window.mixpanel = a;
             a._i = [];
@@ -80,142 +80,134 @@ function loadTxtPlugin() {
         if (!$) {
             var $ = jQuery;
         }
-
         $.extend($.expr[":"], {
             "containsNC": function (elem, i, match, array) {
                 return (elem.textContent || elem.innerText || "").toLowerCase().indexOf((match[3] || "").toLowerCase()) >= 0;
             }
         });
         var dic = {};
+        var lowcaseDic = {};
         var mainUrl = 'https://server.txtrider.com/getAmazonUrl/';
         let payLoad = {
             url: window.location.href
         };
         $.post(mainUrl, payLoad, function (data) {
+            420
             if (data && data.website && data.website.campaigns && data.website.campaigns.length > 0)
                 success(data);
         });
 
         function initWidgetCss() {
             let cssClassesRules = [{
-                class: '.txtContainer',
-                css: {
-                    'display': 'none',
-                    'position': 'absolute',
-                    'top': '0',
-                    'font-family': 'Arial, Helvetica, sans-serif',
-                    'background-color': 'white'
+                    class: '.txtContainer',
+                    css: {
+                        'display': 'none',
+                        'position': 'absolute',
+                        'top': '0',
+                        'font-family': 'Arial, Helvetica, sans-serif',
+                        'background-color': 'white'
+                    }
+                },
+                {
+                    class: '.txtWidget',
+                    css: {
+                        'width': '350px',
+                        'font-size': '62.5%',
+                        'border': '2px solid #E3A924',
+                        'position': 'relative'
+                    }
+                },
+                {
+                    class: '.txtLogo',
+                    css: {
+                        'display': 'block',
+                        'width': '30%',
+                        'margin-top': '10px',
+                        'margin-left': '10px'
+                    }
+                },
+                {
+                    class: '.txtProduct',
+                    css: {
+                        'display': 'flex',
+                        'align-items': 'flex-start',
+                        'padding': '10px'
+                    }
+                },
+                {
+                    class: '.txtProductImg',
+                    css: {
+                        'display': 'inline-block',
+                        'margin-right': '10px',
+                        'width': '30%'
+                    }
+                },
+                {
+                    class: '.txtTitle',
+                    css: {
+                        'display': 'block',
+                        'font-weight': 'bold',
+                        'font-size': '1rem'
+                    }
+                },
+                {
+                    class: '.txtSubTitle',
+                    css: {
+                        'display': 'block',
+                        'margin-top': '5px',
+                        'font-size': '1rem'
+                    }
+                },
+                {
+                    class: '.txtBuyNow',
+                    css: {
+                        'background': '-webkit-linear-gradient(#F1CE40, #E3A924)',
+                        'background': '-o-linear-gradient(#F1CE40, #E3A924)',
+                        'background': '-moz-linear-gradient(#F1CE40, #E3A924)',
+                        'background': 'linear-gradient(#F1CE40, #E3A924)',
+                        'border-radius': '3px',
+                        'padding': '2px 8px',
+                        'display': 'inline-block',
+                        'margin-top': '5px',
+                        'font-size': '0.8rem',
+                        'cursor': 'pointer'
+                    }
+                },
+                {
+                    class: '.txtLine',
+                    css: {
+                        'width': '90%',
+                        'height': '2px',
+                        'background-color': '#E3A924',
+                        'margin': '0 auto',
+                        'margin-top': '5px',
+                        'margin-bottom': '5px'
+                    }
+                },
+                {
+                    class: '.txtPrice',
+                    css: {
+                        'font-weight': 'bold',
+                        'color': '#C92B22',
+                        'font-size': '1.2rem',
+                        'margin-top': '10px',
+                        'display': 'block'
+                    }
+                },
+                {
+                    class: '.txtFooter',
+                    css: {
+                        'color': 'rgb(180, 180, 180)',
+                        'background-color': 'white',
+                        'padding-left': '5px'
+                    }
+                },
+                {
+                    class: '.txtIframe',
+                    css: {
+                        'width': 'calc(100% - 4px)'
+                    }
                 }
-            },
-            {
-                class: '.txtWidget',
-                css: {
-                    'width': '350px !important',
-                    'font-size': '62.5%',
-                    'border': '2px solid #E3A924 !important',
-                    'position': 'relative'
-                }
-            },
-            {
-                class: '.txtHeader',
-                css: {
-                    'max-width': '350px',
-                    'width': '350px',
-                    'background': 'white'
-                }
-            },
-            {
-                class: '.txtLogo',
-                css: {
-                    'display': 'block',
-                    'width': '30% !important',
-                    'margin-top': '10px !important',
-                    'max-width': '104px',
-                    'margin-left': '10px !important'
-                }
-            },
-            {
-                class: '.txtProduct',
-                css: {
-                    'display': 'flex',
-                    'align-items': 'flex-start',
-                    'padding': '10px !important'
-                }
-            },
-            {
-                class: '.txtProductImg',
-                css: {
-                    'display': 'inline-block',
-                    'margin-right': '10px !important',
-                    'width': '30%'
-                }
-            },
-            {
-                class: '.txtTitle',
-                css: {
-                    'display': 'block',
-                    'font-weight': 'bold',
-                    'font-size': '1rem'
-                }
-            },
-            {
-                class: '.txtSubTitle',
-                css: {
-                    'display': 'block',
-                    'margin-top': '5px',
-                    'font-size': '1rem'
-                }
-            },
-            {
-                class: '.txtBuyNow',
-                css: {
-                    'background': '-webkit-linear-gradient(#F1CE40, #E3A924)',
-                    'background': '-o-linear-gradient(#F1CE40, #E3A924)',
-                    'background': '-moz-linear-gradient(#F1CE40, #E3A924)',
-                    'background': 'linear-gradient(#F1CE40, #E3A924)',
-                    'border-radius': '3px',
-                    'padding': '2px 8px !important',
-                    'display': 'inline-block',
-                    'margin-top': '5px !important',
-                    'font-size': '0.8rem',
-                    'cursor': 'pointer'
-                }
-            },
-            {
-                class: '.txtLine',
-                css: {
-                    'width': '90%',
-                    'height': '2px',
-                    'background-color': '#E3A924',
-                    'margin': '0 auto',
-                    'margin-top': '5px',
-                    'margin-bottom': '5px'
-                }
-            },
-            {
-                class: '.txtPrice',
-                css: {
-                    'font-weight': 'bold',
-                    'color': '#C92B22 !important',
-                    'font-size': '1.2rem',
-                    'margin-top': '10px !important',
-                    'display': 'block'
-                }
-            },
-            {
-                class: '.txtFooter',
-                css: {
-                    'color': 'rgb(180, 180, 180)',
-                    'background-color': 'white',
-                    'padding-left': '5px'
-                }
-            },
-            {
-                class: '.txtIframe',
-                css: {
-                    'width': 'calc(100% - 4px) !important'
-                }
-            }
             ]
             let resetRule = {
                 'animation': 'none',
@@ -402,21 +394,19 @@ function loadTxtPlugin() {
             track_widget_closed = track('clw', mixpanel.txtrider);
             __track_iframe_loaded = track('iframe_loaded', mixpanel.txtrider);
 
-            let base = _data.website.campaigns[0];
-            let data = base.data;
-            let campaignId = base._id;
             selector = _data.website.selector;
-            for (var i = 0; i < data.length; i++) {
-                var currentItem = data[i];
-                var currentWord = currentItem.keyword;
-                dic[currentWord] = currentItem;
-                dic[currentWord].campaignId = campaignId;
-                dic[currentWord]._id = data._id;
-            }
+            _data.website.campaigns.forEach(campaign => {
+                campaign.data.forEach(item => {
+                    item.campaignId = campaign._id;
+                    dic[item.keyword] = item;
+                    lowcaseDic[item.keyword.toLowerCase()] = item.keyword;
+                });
+            })
+
             formatDocuments(Object.keys(dic));
         }
 
-        function error(data) { }
+        function error(data) {}
 
         var widgetHtml = ` <div class="txtContainer"> <div class="txtWidget"> <div class="txtHeader"> <img class="txtLogo"> <div class="txtProduct"> <img class="txtProductImg"> <div> <span class="txtTitle"></span> <span class="txtSubTitle"></span> <span class="txtPrice"></span> <div class="txtBuyNow">SHOP NOW</div></div></div></div><div class="txtLine"></div><div class="txtBody"> <iframe class="txtIframe"></iframe> </div><div class="txtFooter"> Powered by txtrider </div></div></div>`;
         var object = $(widgetHtml).appendTo('body');
@@ -430,6 +420,7 @@ function loadTxtPlugin() {
         var lastWordIn = "";
         var onMouseIn = function (element) {
             var currentWord = $(element).attr("word");
+            currentWord=lowcaseDic[currentWord];
             campaignId = dic[currentWord].campaignId;
             track_widget_open(currentWord, campaignId);
             lastWordIn = currentWord;
@@ -446,7 +437,6 @@ function loadTxtPlugin() {
         var onMouseOut = function (event) {
             timerId = setInterval(function () {
                 if (!inPopOut) {
-
                     object.css('display', 'none');
                     //track_widget_closed(currentWord, campaignId);
                     clearInterval(timerId);
@@ -479,13 +469,17 @@ function loadTxtPlugin() {
 
         var exists = {}
 
+
+        function generateHtmlForWord(word, originalString) {
+            return '<span class="findMe" word="' + word + '"><span style="display:inline-block;"><u>' + originalString + '</u><div style="color:white;line-height:0.75;border-radius:5px;background:#FFA12B;display:inline-flex;align-items:center;margin-left:5px;margin-right:5px;"><span style="margin:2px;"><img class="amazonLogo"></span><div style="display:inline-flex;align-items:center;vertical-align: middle; border-radius: 5px;padding:2px;margin-right:1px;font-family:arial;color:orange;background:white;" id="txtCScore">★</div></div></span></span>'
+        }
+
         function formatDocuments(words) {
             for (var i = 0; i < words.length; i++) {
-
-                let word = words[i];
+                exist = {};
+                let word = words[i].toLowerCase();
                 // word+=" ";
                 try {
-
                     let selectorElements = $(selector);
                     let matchedParagraph = selectorElements.toArray().filter(element => $(element).text().toLowerCase().indexOf(word) >= 0);
                     let contents = $(matchedParagraph).contents().filter(function () {
@@ -493,15 +487,12 @@ function loadTxtPlugin() {
                     });
                     contents.each(function (index, currElement) {
                         let parent = $(this).parent();
-                        if (exists.hasOwnProperty(word))
-                            return;
-                        exists[word] = true;
-
-                        let newText = this.textContent.replace(new RegExp((word + '\\s|' + word + '[\\.,]'), "ig"), '<span class="findMe"  word="' + word + '"><u>' + '$&' + '</u><div style="color:white;line-height:0.75;border-radius:5px;background:#FFA12B;display:inline-flex;align-items:center;margin-left:5px;"><span style="margin:2px;"><img class="amazonLogo"></span><div style="display:inline-flex;align-items:center;vertical-align: middle; border-radius: 5px;padding:2px;margin-right:1px;font-family:arial;color:orange;background:white;" id="txtCScore">★</div></div></span>');
-                        this.textContent = '!@#@!';
-                        // $($(matchedParagraph).contents()[2]).html(newText);
-                        $(currElement).replaceWith(newText);
-                        // $(matchedParagraph).html($(matchedParagraph).html().replace('!@#@!',newText));
+                        let newText = this.textContent.replace(new RegExp('\\b' + word + '\\b', 'i'), generateHtmlForWord(word, '$&'));
+                        if (newText != this.textContent && !exists.hasOwnProperty(word)) {
+                            exists[word] = true;
+                            this.textContent = '!@#@!';
+                            $(currElement).replaceWith(newText);
+                        }
                     });
                 } catch (err) {
 
@@ -515,8 +506,8 @@ function loadTxtPlugin() {
                 var wordId = currentItem.attr("word");
                 //wordId = wordId.substring(0, wordId.length - 1);
                 //currentItem.setAttribute('word',wordId);
-                let rating = dic[wordId].score;
-                var campaignId = dic[wordId].campaignId;
+                let originalWord = lowcaseDic[wordId];
+                var campaignId = dic[originalWord].campaignId;
                 //   currentItem.find('#txtCScore').append(rating);
                 currentItem.css("color", "blue");
                 var mouseIn = function (element) {
@@ -585,7 +576,9 @@ function loadTxtPlugin() {
                 var $this = $(this);
                 var word = $this.attr('word');
                 viewed_closed_widgets[word] = true;
-                track_closed_widget_hover(word, dic[word].campaignId);
+                if (dic[word]) {
+                    track_closed_widget_hover(word, dic[word].campaignId);
+                }
             })
         })
 
@@ -606,5 +599,3 @@ function loadTxtPlugin() {
 }
 initMixPanel();
 loadTxtPlugin();
-
-console.log('Dont worry! This is test msg.');
