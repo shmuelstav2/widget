@@ -489,7 +489,7 @@ function loadTxtPlugin() {
 
         function generateHtmlForWord(word, originalString) {
             let score = 1;
-            return '<span class="findMe" word="' + word + '"><span style="display:inline-block;"><u>' + originalString + '</u><div style="color:white;line-height:0.75;border-radius:5px;background:#FFA12B;display:inline-flex;align-items:center;margin-left:5px;margin-right:5px;"><span style="margin:2px;"><img class="amazonLogo"></span><div style="display:inline-flex;align-items:center;vertical-align: middle; border-radius: 5px;padding:2px;margin-right:1px;font-family:arial;color:orange;background:white;" id="txtCScore">★<span class="txtScore" style="font-size:14px;"></span></div></div></span></span>'
+            return '<span class="findMe" word="' + word + '"><span style="display:inline-block;"><u>' + originalString + '</u><div style="color:white;line-height:0.75;border-radius:5px;background:#FFA12B;display:inline-flex;align-items:center;margin-left:5px;margin-right:5px;"><span style="margin:2px;"><img class="amazonLogo"></span><div style="display:inline-flex;align-items:center;vertical-align: middle; border-radius: 5px;padding:2px;margin-right:1px;font-family:arial;color:orange;background:white;" id="txtCScore">★<span class="txtScore" style="font-size:14px;color:black"></span></div></div></span></span>'
         }
 
         function formatDocuments(words) {
