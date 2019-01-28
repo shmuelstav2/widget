@@ -87,7 +87,7 @@ function loadTxtPlugin() {
         });
         var dic = {};
         var lowcaseDic = {};
-        var mainUrl = 'http://txtrider.co/getAmazonUrl/';
+        var mainUrl = 'https://server.txtrider.com/getAmazonUrl/';
         let payLoad = {
             url: window.location.href
         };
@@ -148,6 +148,16 @@ function loadTxtPlugin() {
                         'display': 'block',
                         'font-weight': 'bold',
                         'font-size': '1rem'
+                    }
+                },
+                {
+                    class: '.txtClose',
+                    css: {
+                        'position': 'absolute',
+                        'top': '0px',
+                        'right': '5px',
+                        'font-size': '14px',
+                        'cursor': 'pointer'
                     }
                 },
                 {
@@ -408,19 +418,22 @@ function loadTxtPlugin() {
 
         function error(data) {}
 
-        var widgetHtml = ` <div class="txtContainer"> <div class="txtWidget"> <div class="txtHeader"> <img class="txtLogo"> <div class="txtProduct"> <img class="txtProductImg"> <div> <span class="txtTitle"></span> <span class="txtSubTitle"></span> <span class="txtPrice"></span> <div class="txtBuyNow">SHOP NOW</div></div></div></div><div class="txtLine"></div><div class="txtBody"> <iframe class="txtIframe"></iframe> </div><div class="txtFooter"> Powered by txtrider </div></div></div>`;
+        var widgetHtml = ` <div class="txtContainer"> <div class="txtWidget"> <div class="txtHeader"><div class="txtClose">✖</div><img class="txtLogo"> <div class="txtProduct"> <img class="txtProductImg"> <div> <span class="txtTitle"></span> <span class="txtSubTitle"></span> <span class="txtPrice"></span> <div class="txtBuyNow">SHOP NOW</div></div></div></div><div class="txtLine"></div><div class="txtBody"> <iframe class="txtIframe"></iframe> </div><div class="txtFooter"> Powered by txtrider </div></div></div>`;
         var object = $(widgetHtml).appendTo('body');
         var inPopOut = false;
-        object.on("mouseenter", () => {
+        // object.on("mouseenter", () => {
+        //     inPopOut = true;
+        // })
+        object.on("mouseclick", () => {
             inPopOut = true;
         })
         object.on("mouseleave", () => {
-            inPopOut = false;
+            // inPopOut = false;
         });
         var lastWordIn = "";
         var onMouseIn = function (element) {
             var currentWord = $(element).attr("word");
-            currentWord=lowcaseDic[currentWord];
+            currentWord = lowcaseDic[currentWord];
             campaignId = dic[currentWord].campaignId;
             track_widget_open(currentWord, campaignId);
             lastWordIn = currentWord;
@@ -443,6 +456,10 @@ function loadTxtPlugin() {
                 }
             }, 1500);
         }
+        $('html').click(() => {
+            object.css('display', 'none');
+        });
+
         var getPosition = function (element) {
             var fromTop = element.offset().top - $(window).scrollTop() - object.height() - 10;
             var fromLeft = element.offset().left + element.width() / 2 - object.width() / 4;
@@ -511,11 +528,14 @@ function loadTxtPlugin() {
                 //   currentItem.find('#txtCScore').append(rating);
                 currentItem.css("color", "blue");
                 var mouseIn = function (element) {
-                    return function () {
+                    return function (event) {
+                        event.stopPropagation();
                         return onMouseIn(element);
                     };
                 }(currentItem);
-                currentItem.hover(mouseIn, onMouseOut);
+                currentItem.on("click", mouseIn);
+
+                // currentItem.hover(mouseIn, onMouseOut);
             }
         }
         var scoreImgUrl = mainUrl + '/stars/';
@@ -544,6 +564,9 @@ function loadTxtPlugin() {
             $('.txtTitle').text(data.productName);
             $('.txtTitle').text(data.productName);
             $('.txtPrice').text(data.price);
+            $('.txtClose').click(() => {
+                $('.txtContainer').css('display', 'none');
+            });
             $(".txtProductImg").attr("src", data.image);
             $iframe.attr("src", data.iframe);
             $iframe.on('load', () => {
