@@ -87,12 +87,11 @@ function loadTxtPlugin() {
         });
         var dic = {};
         var lowcaseDic = {};
-        var mainUrl = 'https://server.txtrider.com/getAmazonUrl/';
+        var mainUrl = 'http://txtrider.co/getAmazonUrl/';
         let payLoad = {
             url: window.location.href
         };
         $.post(mainUrl, payLoad, function (data) {
-            420
             if (data && data.website && data.website.campaigns && data.website.campaigns.length > 0)
                 success(data);
         });
@@ -382,6 +381,11 @@ function loadTxtPlugin() {
         var selector;
 
         function success(_data) {
+            _data.website.campaigns.forEach((campaign) => {
+                campaign.data.forEach((word) => {
+                    word.keyword = word.display;
+                });
+            })
             if (!(_data && _data.website && _data.website.campaigns && _data.website.campaigns[0] && _data.website.campaigns[0].data && _data.website.campaigns[0].data[0])) {
                 return console.warn(`some data is missing; not displaying widget.`, _data);
             }
@@ -489,7 +493,7 @@ function loadTxtPlugin() {
 
         function generateHtmlForWord(word, originalString) {
             let score = 1;
-            return '<span class="findMe" word="' + word + '"><span style="display:inline-block;"><u>' + originalString + '</u><div style="color:white;line-height:0.75;border-radius:5px;background:#FFA12B;display:inline-flex;align-items:center;margin-left:5px;margin-right:5px;"><span style="margin:2px;"><img class="amazonLogo"></span><div style="display:inline-flex;align-items:center;vertical-align: middle; border-radius: 5px;padding:2px;margin-right:1px;font-family:arial;color:orange;background:white;" id="txtCScore">★<span class="txtScore" style="font-size:14px;color:black"></span></div></div></span></span>'
+            return '<span class="findMe" word="' + word + '" style="cursor:pointer"><span style="display:inline-block;"><u>' + originalString + '</u><div style="color:white;line-height:0.75;border-radius:5px;background:#FFA12B;display:inline-flex;align-items:center;margin-left:5px;margin-right:5px;"><span style="margin:2px;"><img class="amazonLogo"></span><div style="display:inline-flex;align-items:center;vertical-align: middle; border-radius: 5px;padding:2px;margin-right:1px;font-family:arial;color:orange;background:white;" id="txtCScore">★<span class="txtScore" style="font-size:14px;color:black"></span></div></div></span></span>'
         }
 
         function formatDocuments(words) {
