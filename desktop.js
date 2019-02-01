@@ -87,7 +87,7 @@ function loadTxtPlugin() {
         });
         var dic = {};
         var lowcaseDic = {};
-        var mainUrl = 'https://txtrider.co/getAmazonUrl/';
+        var mainUrl = 'http://txtrider.co/getAmazonUrl/';
         let payLoad = {
             url: window.location.href
         };
