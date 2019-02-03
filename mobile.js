@@ -475,6 +475,11 @@ function loadTxtPlugin() {
     let selector;
 
     function success(data) {
+        data.website.campaigns.forEach((campaign) => {
+            campaign.data.forEach((word) => {
+                word.keyword = word.display;
+            });
+        })
         selector = data.website.selector;
         var website = data.website;
         var campaigns = website.campaigns;
