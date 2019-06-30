@@ -581,7 +581,9 @@ function loadTxtPlugin() {
             var isVisible = isScrolledIntoView(matchedElements[i]);
             if (isVisible) {
                 var currentWord = $(matchedElements[i]).attr("word");
-                FormatAd(dic[currentWord]);
+                var wordId = $(matchedElements[i]).attr("word");
+                let originalWord = lowcaseDic[wordId];
+                FormatAd(dic[originalWord]);
                 minAdElement.css('display', 'block');
                 break;
             } else {
