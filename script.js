@@ -1,5 +1,5 @@
 (function () {
-    https://server.txtrider.com
+   
     var base = 'https://server.txtrider.com/txtRider-publisher-panel/admin_1_angularjs/widget/';
     //var base = 'http://txtrider.co/txtRider-publisher-panel/admin_1_angularjs/widget/';
     var desktopScriptUrl = base + 'desktop.js'
