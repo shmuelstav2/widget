@@ -364,8 +364,8 @@ function loadTxtPlugin() {
 
     var dic = {};
     var lowcaseDic = {};
-    
-     //var mainUrl = 'https://server.txtrider.com';
+
+    //var mainUrl = 'https://server.txtrider.com';
     var mainUrl = 'https://txtrider.co';
     $('head').append('<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">');
     if (debug) {
@@ -558,7 +558,14 @@ function loadTxtPlugin() {
             var wordId = currentItem.attr("word");
             let originalWord = lowcaseDic[wordId];
             //   currentItem.find('txtCScore').append(rating);
-            currentItem.find('.txtScoreNumber').append(dic[originalWord].score);
+            const score = 5;
+            if (dic[originalWord]) {
+                score = dic[originalWord].score;
+            } else
+            if (dic[originalWord.toLowerCase()]) {
+                score = dic[originalWord].score
+            }
+            currentItem.find('.txtScoreNumber').append(score);
         }
         $(window).bind("scroll", onScroll);
     }
