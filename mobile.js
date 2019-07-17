@@ -364,15 +364,9 @@ function loadTxtPlugin() {
 
     var dic = {};
     var lowcaseDic = {};
-<<<<<<< HEAD
-
-    //var mainUrl = 'https://server.txtrider.com';
-    var mainUrl = 'https://txtrider.co';
-=======
     
     var mainUrl = 'https://server.txtrider.com';
     //var mainUrl = 'https://txtrider.co';
->>>>>>> db2c138dfe4d5bb80d98b4659fc80e0d910661b6
     $('head').append('<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">');
     if (debug) {
         success(testMock)
@@ -564,7 +558,7 @@ function loadTxtPlugin() {
             var wordId = currentItem.attr("word");
             let originalWord = lowcaseDic[wordId];
             //   currentItem.find('txtCScore').append(rating);
-            const score = 5;
+            let score = 5;
             if (dic[originalWord]) {
                 score = dic[originalWord].score;
             } else
