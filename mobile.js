@@ -364,8 +364,13 @@ function loadTxtPlugin() {
 
     var dic = {};
     var lowcaseDic = {};
+
+
+   var mainUrl = 'https://server.txtrider.com';
+   //var mainUrl = 'https://txtrider.co';
+
     
-    var mainUrl = 'https://server.txtrider.com';
+   var mainUrl = 'https://server.txtrider.com';
     //var mainUrl = 'https://txtrider.co';
     $('head').append('<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">');
     if (debug) {
