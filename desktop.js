@@ -613,7 +613,7 @@ function loadTxtPlugin() {
                 }
                 $('.txt-hotel-img').attr('src', data.image);
                 $('.txt-score').text(data.HotelData[0].reviewScore);
-                $('.txt-review').text(data.reviewsCount);
+                $('.txt-review').text(data.reviewsCount+' reviews');
                 $('.txt-price').text(data.HotelData[0].crossedOutRate + '$');
                 $('.txt-dis-price').text(data.price + '$');
                 $('.txt-hotel-name').text(data.productName);
