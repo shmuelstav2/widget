@@ -605,7 +605,7 @@ function loadTxtPlugin() {
         function FormatAd(word, data, campaignId) {
             if (data.HotelData) {
                 txtObject.html(agodaWidgetHtml);
-                if (data.HotelData[0].discountPercentage > 0) {
+                if (data.HotelData[0].discountPercentage && data.HotelData[0].discountPercentage > 0) {
                     $('.txt-discount').show();
                     $('.txt-discount').text(data.HotelData[0].discountPercentage + ' % off');
                 } else {
