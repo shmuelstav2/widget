@@ -1,4 +1,6 @@
+// NOTE: Styling issue on Safari was fixed (12/01/2019)
 function initMixPanel() {
+    //new version 15/01/2019
     (function (e, a) {
         if (!a.__SV) {
             var b = window;
@@ -9,7 +11,7 @@ function initMixPanel() {
                     return (l = a.match(RegExp(b + "=([^&]*)"))) ? l[1] : null
                 };
                 g && c(g, "state") && (i = JSON.parse(decodeURIComponent(c(g, "state"))), "mpeditor" === i.action && (b.sessionStorage.setItem("_mpcehash", g), history.replaceState(i.desiredHash || "", e.title, j.pathname + j.search)))
-            } catch (m) {}
+            } catch (m) { }
             var k, h;
             window.mixpanel = a;
             a._i = [];
@@ -60,7 +62,10 @@ function loadTxtPlugin() {
 
     //function track(){};
 
-
+    // NOTE: This is because of safari styling issue.
+    function forceUpdate() {
+        $("body").addClass("dummyClass").removeClass("dummyClass");
+    }
 
     function track_iframe_loaded(word, campaign) {
         if (locked_iframe_load[word]) return false;
@@ -88,8 +93,9 @@ function loadTxtPlugin() {
         var dic = {};
         var lowcaseDic = {};
         var mainUrl = 'http://txtrider.co/getAmazonUrl/';
-        let payLoad = {
-            url: window.location.href
+        var payLoad = {
+            // url: window.location.href
+            url: 'http://www.yabayeah.online'
         };
         $.post(mainUrl, payLoad, function (data) {
             420
@@ -99,115 +105,148 @@ function loadTxtPlugin() {
 
         function initWidgetCss() {
             let cssClassesRules = [{
-                    class: '.txtContainer',
-                    css: {
-                        'display': 'none',
-                        'position': 'absolute',
-                        'top': '0',
-                        'font-family': 'Arial, Helvetica, sans-serif',
-                        'background-color': 'white'
-                    }
-                },
-                {
-                    class: '.txtWidget',
-                    css: {
-                        'width': '350px',
-                        'font-size': '62.5%',
-                        'border': '2px solid #E3A924',
-                        'position': 'relative'
-                    }
-                },
-                {
-                    class: '.txtLogo',
-                    css: {
-                        'display': 'block',
-                        'width': '30%',
-                        'margin-top': '10px',
-                        'margin-left': '10px'
-                    }
-                },
-                {
-                    class: '.txtProduct',
-                    css: {
-                        'display': 'flex',
-                        'align-items': 'flex-start',
-                        'padding': '10px'
-                    }
-                },
-                {
-                    class: '.txtProductImg',
-                    css: {
-                        'display': 'inline-block',
-                        'margin-right': '10px',
-                        'width': '30%'
-                    }
-                },
-                {
-                    class: '.txtTitle',
-                    css: {
-                        'display': 'block',
-                        'font-weight': 'bold',
-                        'font-size': '1rem'
-                    }
-                },
-                {
-                    class: '.txtSubTitle',
-                    css: {
-                        'display': 'block',
-                        'margin-top': '5px',
-                        'font-size': '1rem'
-                    }
-                },
-                {
-                    class: '.txtBuyNow',
-                    css: {
-                        'background': '-webkit-linear-gradient(#F1CE40, #E3A924)',
-                        'background': '-o-linear-gradient(#F1CE40, #E3A924)',
-                        'background': '-moz-linear-gradient(#F1CE40, #E3A924)',
-                        'background': 'linear-gradient(#F1CE40, #E3A924)',
-                        'border-radius': '3px',
-                        'padding': '2px 8px',
-                        'display': 'inline-block',
-                        'margin-top': '5px',
-                        'font-size': '0.8rem',
-                        'cursor': 'pointer'
-                    }
-                },
-                {
-                    class: '.txtLine',
-                    css: {
-                        'width': '90%',
-                        'height': '2px',
-                        'background-color': '#E3A924',
-                        'margin': '0 auto',
-                        'margin-top': '5px',
-                        'margin-bottom': '5px'
-                    }
-                },
-                {
-                    class: '.txtPrice',
-                    css: {
-                        'font-weight': 'bold',
-                        'color': '#C92B22',
-                        'font-size': '1.2rem',
-                        'margin-top': '10px',
-                        'display': 'block'
-                    }
-                },
-                {
-                    class: '.txtFooter',
-                    css: {
-                        'color': 'rgb(180, 180, 180)',
-                        'background-color': 'white',
-                        'padding-left': '5px'
-                    }
-                },
-                {
-                    class: '.txtIframe',
-                    css: {
-                        'width': 'calc(100% - 4px)'
-                    }
+                class: '.txtContainer',
+                css: {
+                    'display': 'none',
+                    'position': 'absolute',
+                    'top': '0',
+                    'font-family': 'Arial, Helvetica, sans-serif',
+                    'background-color': 'white',
+                    'max-width': '300px'
                 }
+            },
+            {
+                class: '.txtWidget',
+                css: {
+                    'width': '350px !important',
+                    'font-size': '62.5%',
+                    'border': '2px solid #E3A924 !important',
+                    'position': 'relative',
+                    'background' : 'white'
+                }
+            },
+            {
+                class: '.txtLogo',
+                css: {
+                   'display': 'block',
+                   'width': '30% !important',
+                   'margin-top': '10px !important',
+                   'max-width': '104px',
+                   'margin-left': '10px !important'
+                   }  
+            },
+            {
+                class: '.headerContainer',
+                css: {
+                    'display': 'flex',
+                    'flex-direction': 'column',
+                    'align-items': 'flex-start',
+                    'width': '240px !important',
+                    'max-width': '240px',
+                }
+            },
+            {
+                class: '.txtHeader',
+                css: {
+                    'background': 'white',
+                    'max-width': '345px',
+                    'width': '345px !important'
+                }
+            },
+            // {
+            //     class: '.txtLogo',
+            //     css: {
+            //         'display': 'block',
+            //         'width': '30%',
+            //         'margin-top': '10px',
+            //         'margin-left': '10px'
+            //     }
+            // },
+            {
+                class: '.txtProduct',
+                css: {
+                    'display': 'flex',
+                    'align-items': 'flex-start',
+                    'padding': '10px !important'
+                }
+            },
+            {
+                class: '.txtProductImg',
+                css: {
+                    'display': 'inline-block',
+                    'margin-right': '10px !important',
+                    'width': '30%'
+                }
+            },
+            {
+                class: '.txtTitle',
+                css: {
+                    'display': 'block',
+                    'font-weight': 'bold',
+                    'font-size': '1rem',
+                    'width': '240px',
+                    'max-width': '240px',
+                    'white-space': 'pre-wrap'
+                }
+            },
+            {
+                class: '.txtSubTitle',
+                css: {
+                    'display': 'block',
+                    'margin-top': '5px',
+                    'font-size': '1rem'
+                }
+            },
+            {
+                class: '.txtBuyNow',
+                css: {
+                    'background': '-webkit-linear-gradient(#F1CE40, #E3A924)',
+                    'background': '-o-linear-gradient(#F1CE40, #E3A924)',
+                    'background': '-moz-linear-gradient(#F1CE40, #E3A924)',
+                    'background': 'linear-gradient(#F1CE40, #E3A924)',
+                    'border-radius': '3px',
+                    'padding': '2px 8px !important',
+                    'display': 'inline-block',
+                    'margin-top': '5px !important',
+                    'font-size': '0.8rem',
+                    'cursor': 'pointer'
+                }
+            },
+            {
+                class: '.txtLine',
+                css: {
+                    'width': '90%',
+                    'height': '2px',
+                    'background-color': '#E3A924',
+                    'margin': '0 auto',
+                    'margin-top': '5px',
+                    'margin-bottom': '5px'
+                }
+            },
+            {
+                class: '.txtPrice',
+                css: {
+                    'font-weight': 'bold',
+                    'color': '#C92B22',
+                    'font-size': '1.2rem',
+                    'margin-top': '10px',
+                    'display': 'block'
+                }
+            },
+            {
+                class: '.txtFooter',
+                css: {
+                    'color': 'rgb(180, 180, 180)',
+                    'background-color': 'white',
+                    'padding-left': '5px'
+                }
+            },
+            {
+                class: '.txtIframe',
+                css: {
+                    'width': 'calc(100% - 4px)'
+                }
+            }
             ]
             let resetRule = {
                 'animation': 'none',
@@ -368,6 +407,7 @@ function loadTxtPlugin() {
                 $(element.class).css('display', "''");
                 $(element.class).css(element.css);
             }
+            $("body").addClass("dummyClass").removeClass("dummyClass");
         }
         var selector;
 
@@ -406,9 +446,9 @@ function loadTxtPlugin() {
             formatDocuments(Object.keys(dic));
         }
 
-        function error(data) {}
+        function error(data) { }
 
-        var widgetHtml = ` <div class="txtContainer"> <div class="txtWidget"> <div class="txtHeader"> <img class="txtLogo"> <div class="txtProduct"> <img class="txtProductImg"> <div> <span class="txtTitle"></span> <span class="txtSubTitle"></span> <span class="txtPrice"></span> <div class="txtBuyNow">SHOP NOW</div></div></div></div><div class="txtLine"></div><div class="txtBody"> <iframe class="txtIframe"></iframe> </div><div class="txtFooter"> Powered by txtrider </div></div></div>`;
+        var widgetHtml = ` <div class="txtContainer"> <div class="txtWidget"> <div class="txtHeader"> <div class="txtProduct"> <img class="txtProductImg"> <div class="headerContainer"> <span class="txtTitle"></span> <span class="txtSubTitle"></span> <span class="txtPrice"></span> <div class="txtBuyNow">SHOP NOW</div></div></div></div><div class="txtLine"></div><div class="txtBody"> <iframe class="txtIframe"></iframe> </div><div class="txtFooter"> Powered by txtrider </div></div></div>`;
         var object = $(widgetHtml).appendTo('body');
         var inPopOut = false;
         object.on("mouseenter", () => {
@@ -420,7 +460,7 @@ function loadTxtPlugin() {
         var lastWordIn = "";
         var onMouseIn = function (element) {
             var currentWord = $(element).attr("word");
-            currentWord=lowcaseDic[currentWord];
+            currentWord = lowcaseDic[currentWord];
             campaignId = dic[currentWord].campaignId;
             track_widget_open(currentWord, campaignId);
             lastWordIn = currentWord;
@@ -428,10 +468,13 @@ function loadTxtPlugin() {
             position = element.offset();
             position = getPosition(element);
             clearInterval(timerId);
+            $('.txtTitle').css('max-width','240px');
+            $('.txtTitle').css('width', '240px');
             object.css('left', position.left);
             object.css('top', position.top - object.height());
             object.css('display', 'inline');
             object.css('position', 'absolute');
+            $("body").addClass("dummyClass").removeClass("dummyClass");
         }
         var timerId;
         var onMouseOut = function (event) {
@@ -517,6 +560,7 @@ function loadTxtPlugin() {
                 }(currentItem);
                 currentItem.hover(mouseIn, onMouseOut);
             }
+            $("body").addClass("dummyClass").removeClass("dummyClass");
         }
         var scoreImgUrl = mainUrl + '/stars/';
         var formatCloseButton = false;
@@ -540,7 +584,7 @@ function loadTxtPlugin() {
 
         function FormatAd(word, data, campaignId) {
             var $iframe = $(".txtIframe");
-            $('.txtLogo').attr("src", amazonLogoImg);
+            // $('.txtLogo').attr("src", amazonLogoImg);
             $('.txtTitle').text(data.productName);
             $('.txtTitle').text(data.productName);
             $('.txtPrice').text(data.price);
@@ -549,6 +593,7 @@ function loadTxtPlugin() {
             $iframe.on('load', () => {
                 track_iframe_loaded(word, campaignId);
             });
+            $(".txtBuyNow").unbind("click");
             $(".txtBuyNow").click(() => {
                 track_buy_now(word, campaignId);
                 var win = window.open(data.productUrl, '_blank');
