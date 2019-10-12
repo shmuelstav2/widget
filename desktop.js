@@ -87,7 +87,8 @@ function loadTxtPlugin() {
             }
         });
         var dic = {};
-        var mainUrl = 'https://server.txtrider.com/getAmazonUrl/';
+        //var mainUrl = 'https://server.txtrider.com/getAmazonUrl/';
+        var mainUrl = 'https://txtrider.co/getAmazonUrl/';
         let payLoad = {
             url: window.location.href
         };
