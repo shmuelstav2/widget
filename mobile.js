@@ -382,11 +382,19 @@ function loadTxtPlugin() {
     var lowcaseDic = {};
 
 
+<<<<<<< HEAD
     var mainUrl = 'https://server.txtrider.com';
     //var mainUrl = 'https://txtrider.co';
 
 
     //    var mainUrl = 'https://server.txtrider.com';
+=======
+   //var mainUrl = 'https://server.txtrider.com';
+   var mainUrl = 'https://txtrider.co';
+
+    
+   //var mainUrl = 'https://server.txtrider.com';
+>>>>>>> 6b0ce6cc6009beee5b2f468b0d5ae70912f2a674
     var mainUrl = 'https://txtrider.co';
     $('head').append('<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">');
     if (debug) {
