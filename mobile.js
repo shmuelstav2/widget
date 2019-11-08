@@ -338,6 +338,9 @@ function loadTxtPlugin() {
         background-color: #faaf40;
         font-family: 'Raleway', sans-serif;
     }
+    .agoda-bg{
+        background-color: #5392F9;
+    }
     .main-add-header {
         position:relative;
     }
@@ -382,19 +385,11 @@ function loadTxtPlugin() {
     var lowcaseDic = {};
 
 
-<<<<<<< HEAD
-    var mainUrl = 'https://server.txtrider.com';
-    //var mainUrl = 'https://txtrider.co';
-
-
-    //    var mainUrl = 'https://server.txtrider.com';
-=======
    //var mainUrl = 'https://server.txtrider.com';
    var mainUrl = 'https://txtrider.co';
 
     
    //var mainUrl = 'https://server.txtrider.com';
->>>>>>> 6b0ce6cc6009beee5b2f468b0d5ae70912f2a674
     var mainUrl = 'https://txtrider.co';
     $('head').append('<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">');
     if (debug) {
@@ -405,7 +400,7 @@ function loadTxtPlugin() {
         url: mainUrl + "/getAmazonUrl",
         data: {
             url: window.location.href
-            // url: 'http://agoda.co.il/'
+            // url: 'https://milesandaway.com/'
         },
         success: success,
         error: error
@@ -515,12 +510,17 @@ function loadTxtPlugin() {
         $(minAdHtml).appendTo("body");
         isAgoda = true;
         isAgoda ? $(agodaWidgetHtml).appendTo("body") : $(maxAdHtml).appendTo("body");
-
+        
         $("body").append(minAdHtml);
+        
         isAgoda ? $("body").append(agodaWidgetHtml) : $("body").append(maxAdHtml);
 
         minAdElement = $('#txtMinAd');
         maxAdElement = $('#txtMaxAd');
+        if(isAgoda)
+        {
+            $('.smallAdHeader').addClass('agoda-bg');
+        }
         minAdElement.click(ExpandAd);
         maxAdElement.click(MinimizedAd);
 
@@ -574,7 +574,7 @@ function loadTxtPlugin() {
                 contents.each(function (index, currElement) {
                     let parent = $(this).parent();
                     let originalWord = lowcaseDic[word];
-                    const wordData = dic[originalWord];
+                    const wordData = dic[word];
                     const isAgoda = wordData.HotelData;
                     let newText = this.textContent.replace(new RegExp('\\b' + word + '\\b', 'i'), generateHtmlForWord(word, isAgoda, originalWord));
                     if (newText != this.textContent && !exists.hasOwnProperty(word)) {
@@ -654,7 +654,7 @@ function loadTxtPlugin() {
                 var currentWord = $(matchedElements[i]).attr("word");
                 var wordId = $(matchedElements[i]).attr("word");
                 let originalWord = lowcaseDic[wordId];
-                FormatAd(dic[originalWord]);
+                FormatAd(dic[wordId]);
                 minAdElement.css('display', 'block');
                 break;
             } else {
