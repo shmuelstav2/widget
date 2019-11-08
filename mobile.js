@@ -7,6 +7,95 @@ if (!$) {
 }
 
 function loadTxtPlugin() {
+    var dic = {};
+    var mainUrl = 'https://server.txtrider.com';
+    //var mainUrl = 'http://txtrider.co';
+    $('head').append('<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">');
+    if (debug) {
+        success(testMock)
+    }
+    $.ajax({
+        type: "POST",
+        url: mainUrl + "/getAmazonUrl",
+        data: {
+            "url": this.location.href
+        },
+        success: success,
+        error: error
+    });
+
+    var maxAdHtml = `<div id="txtMaxAd">
+            <div class="main-add-body">
+                <div class="main-add-header">
+                    <img src="                                        " class="collapse-open" />
+                    <div class="txtLogo header-wrap">
+                        <div class="add-txt-name txtName"></div>
+                        <img class="add-image" src="Amazon-icon.png">
+                        <div class="star-six-ad-max"><span class="text-number-add grey-color">5</span></div>
+                        <div class ="txtSubName" class="add-sub-name" ></div>
+                    </div>
+                </div>
+                <div class="product-wrap">
+                    <div class="txtProductInfo" target="_blank">
+                        <img class ="txtScoreImg"/>
+                        <div class ="txtScore">
+                            <div class="txtProductName"></div>
+                            </div>
+                            <div class="stars"></div>
+                            <div class="txtPrice"></div>
+                            <a class="buyanchor" target="_blank" href="">
+                                <div class="buynow">Buy now
+                                </div>
+                            </a>
+                    </div>
+                    <div class="txtIframeHolder">
+                     <div class="scroll_frame">
+                        <iframe src="" class ="txtIframe"></iframe>
+                        </div>
+                    </div>
+                </div>
+                <!--<div style="margin: 1em; position: relative; color: rgb(60,60,60); border-left: 5px solid #055292; padding-left: 0.5em; background-color: white; font: 3.7vw 'Raleway', sans-serif;">-->
+                    <!--<div>-->
+                        <!--<div style="font-weight: 900; float: left; margin-top: 5px;font-size:4.374.8vw" class ="txtFirstRevName"></div>-->
+                        <!--<div id="topReviewScore" style="float: right;"><img class ="txtfirstRevScoreImg" /></div>-->
+                    <!--</div>-->
+                    <!--<div style="content:'.'; visibility: hidden; display: block; height: 0; clear: both;"></div>-->
+                <!--<div class ="txtReviewText">-->
+                <!--</div>-->
+                <!--<div style="height: 1px; width: 100%; border-bottom: 2px solid rgba(120,180,180,0.1);"></div>-->
+                <div style="font-size: 12px; width: auto; border-radius: 3px; color: rgb(80,80,80); font-family: 'Bitter', serif; margin-left: 1em; padding: 2px;">
+                    Powered by
+                    <div style="background-color: rgb(80,80,80); color: white; padding: 0 4px; margin: 5px; display: inline; border-radius: 4px;">txtrider</div>
+                </div>
+            </div>
+        </div>`;
+
+    var minAdHtml = `<div id="txtMinAd">
+            <div style="position: relative;width: 70vw; display: inline-block;text-align: left;">
+                <div class="toggle" id="expand"></div>
+                <div class="smallAdHeader txtLogo">
+                    <div class="ad-header">
+                        <div style="font-size: 5vw; letter-spacing: -1px; font-weight: bold;color:#524a40; width: 65%;
+                            text-overflow: ellipsis; overflow: hidden;white-space: nowrap;display: inline-block;" class="txtName"></div>
+                        <div  class ="txtSubName" style="display: inline-block;">
+                            <img class="add-image" src="Amazon-icon.png">
+                            <img src="">
+
+                            <!--<div class="svg-star">★<span class="text-number-add">5</span></div>-->
+                            <div class="star-six-ad"><span class="text-number-add">5</span></div>
+                            <!--<img src="blackStar.jpg">-->
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>`;
+
+    $(minAdHtml).appendTo("body");
+    $(maxAdHtml).appendTo("body");
+
+    $("body").append(minAdHtml);
+    $("body").append(maxAdHtml);
 
 
     const base64Images = {

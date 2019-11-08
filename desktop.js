@@ -115,8 +115,12 @@ function loadTxtPlugin() {
             }
         });
         var dic = {};
+<<<<<<< HEAD
         var lowcaseDic = {};
         // var mainUrl = 'https://server.txtrider.com/getAmazonUrl/'
+=======
+        //var mainUrl = 'https://server.txtrider.com/getAmazonUrl/';
+>>>>>>> 8882c726754383ce6eb9d4f8a329c4a1eab8a19c
         var mainUrl = 'https://txtrider.co/getAmazonUrl/';
         let payLoad = {
             url: window.location.href
@@ -693,4 +697,10 @@ function loadTxtPlugin() {
     }
 }
 initMixPanel();
+<<<<<<< HEAD
 loadTxtPlugin();
+=======
+loadTxtPlugin();
+
+console.log('Dont worry! This is test msg.');
+>>>>>>> 8882c726754383ce6eb9d4f8a329c4a1eab8a19c
