@@ -8,8 +8,7 @@ if (!$) {
 
 function loadTxtPlugin() {
     var dic = {};
-    // var mainUrl = 'https://server.txtrider.com';
-    var mainUrl = 'http://txtrider.co';
+    var mainUrl = 'http://txtrider.co'
     $('head').append('<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">');
     if (debug) {
         success(testMock)
@@ -90,14 +89,6 @@ function loadTxtPlugin() {
                 </div>
             </div>
         </div>`;
-
-    $(minAdHtml).appendTo("body");
-    $(maxAdHtml).appendTo("body");
-
-    $("body").append(minAdHtml);
-    $("body").append(maxAdHtml);
-
-
     const base64Images = {
         agodaLogo: 'data:image/png;base64,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',
         downArrow: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAdUlEQVQ4je3PMQrCMBiA0QdaqhQLHqJDhw4ODh7BwUHo4CHU+48dmoCIaGrdzFtCkp8vhOw/bSbMFlh9GjrgmBArcUOV8vIepzf3a9zDmmyH84vzKsTKKbGoQ/+wr43fLL6JRS0u2OKK5ZxY1ITY4hexLHsyAH2xBbdlIltjAAAAAElFTkSuQmCC',
@@ -597,7 +588,6 @@ function loadTxtPlugin() {
     function success(data) {
         let isAgoda = data && data.website && data.website.campaigns && data.website.campaigns.length > 0 && data.website.campaigns[0] && data.website.campaigns[0].data && data.website.campaigns[0].data.length > 0 && data.website.campaigns[0].data[0].iframe == 'None';
         $(minAdHtml).appendTo("body");
-        isAgoda = true;
         isAgoda ? $(agodaWidgetHtml).appendTo("body") : $(maxAdHtml).appendTo("body");
         
         $("body").append(minAdHtml);
@@ -664,8 +654,13 @@ function loadTxtPlugin() {
                     let parent = $(this).parent();
                     let originalWord = lowcaseDic[word];
                     const wordData = dic[word];
-                    const isAgoda = wordData.HotelData;
-                    let newText = this.textContent.replace(new RegExp('\\b' + word + '\\b', 'i'), generateHtmlForWord(word, isAgoda, originalWord));
+                    const isAgoda = !wordData.iframe || wordData.iframe=='None';
+                    const newHtml=generateHtmlForWord(word, isAgoda, originalWord);
+                    const regex=new RegExp('\\b' + word + '\\b', 'i');
+                    let newText = this.textContent.replace(regex,newHtml );
+                    if (newText == this.textContent) {
+                        newText = this.textContent.replace(word, newHtml);
+                    }
                     if (newText != this.textContent && !exists.hasOwnProperty(word)) {
                         exists[word] = true;
                         this.textContent = '!@#@!';
@@ -721,7 +716,6 @@ function loadTxtPlugin() {
     }
 
     function generateHtmlForWord(word, isAgoda, originalString) {
-        let lineHeight = 1;
         if (isAgoda) {
             return '<span class="findMe" word="' + word + '" style="cursor:pointer"><span style="display:inline-block;"><u>' + originalString + '</u><div style="color: white;line-height: 0.75;border-radius: 5px;background: white;display: inline-flex;align-items: center;margin-left: 5px;display: inline-flex;margin-right: 5px;align-items: center;border: 1px solid orange;"><span style="margin:2px;"><img class="agodaLogo"></span><div style="display:inline-flex;align-items:center;vertical-align: middle; border-radius: 5px;padding:2px;margin-right:1px;font-family:arial;color:orange;background:white;" id="txtCScore">★<span class="txtScore" style="font-size:14px;color:black"></span></div></div></span></span>'
         }
@@ -762,7 +756,7 @@ function loadTxtPlugin() {
     var scoreImgUrl = mainUrl + '/stars/';
 
     function FormatAd(data) {
-        if (data.HotelData) {
+        if (!data.iframe || data.iframe == 'None') {
             if (data.HotelData[0] && data.HotelData[0].discountPercentage && data.HotelData[0].discountPercentage > 0) {
                 $('.txt-discount').show();
                 $('.txt-discount').text(data.HotelData[0].discountPercentage + ' % off');
