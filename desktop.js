@@ -619,14 +619,14 @@ function loadTxtPlugin() {
                 $('.txt-hotel-img').attr('src', data.image);
                 $('.txt-score').text(data.HotelData[0] && data.HotelData[0].reviewScore);
                 $('.txt-review').text(data.reviewsCount + ' reviews');
-                const crossedOutRate = data.HotelData[0] && data.HotelData[0].crossedOutRate;
-                if (crossedOutRate){
-                    $('.txt-price').text(crossedOutRate+'$');
-                    $('.txt-price').css('display','block');
+                const crossedOutRate = null;
+                if (data.HotelData[0] && data.HotelData[0].crossedOutRate) crossedOutRate = data.HotelData[0].crossedOutRate;
+                if (crossedOutRate) {
+                    $('.txt-price').text(crossedOutRate + '$');
+                    $('.txt-price').css('display', 'block');
                     $('.txt-dis-price').text(data.price + '$');
-                }
-                else {
-                    $('.txt-price').css('display','none');
+                } else {
+                    $('.txt-price').css('display', 'none');
                     $('.txt-dis-price').text(data.price + '$');
                 }
                 $('.txt-hotel-name').text(data.productName);
