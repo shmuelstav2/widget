@@ -17,7 +17,7 @@ function loadTxtPlugin() {
         type: "POST",
         url: mainUrl + "/getAmazonUrl",
         data: {
-            "url": this.location.href
+            url: this.location.href
         },
         success: success,
         error: error
