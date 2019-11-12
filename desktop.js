@@ -543,7 +543,7 @@ function loadTxtPlugin() {
                         let parent = $(this).parent();
                         let originalWord = lowcaseDic[word];
                         const wordData = dic[originalWord];
-                        const isAgoda = !wordData.iframe || wordData.iframe=='None';
+                        const isAgoda = !wordData.iframe || wordData.iframe == 'None';
                         const newHtml = generateHtmlForWord(word, '$&', isAgoda);
                         const regx = new RegExp('\\b' + word + '\\b', 'i');
                         let newText = this.textContent.replace(regx, newHtml);
@@ -619,8 +619,16 @@ function loadTxtPlugin() {
                 $('.txt-hotel-img').attr('src', data.image);
                 $('.txt-score').text(data.HotelData[0] && data.HotelData[0].reviewScore);
                 $('.txt-review').text(data.reviewsCount + ' reviews');
-                $('.txt-price').text(data.HotelData[0] && data.HotelData[0].crossedOutRate + '$');
-                $('.txt-dis-price').text(data.price + '$');
+                const crossedOutRate = data.HotelData[0] && data.HotelData[0].crossedOutRate;
+                if (crossedOutRate){
+                    $('.txt-price').text(crossedOutRate+'$');
+                    $('.txt-price').css('display','block');
+                    $('.txt-dis-price').text(data.price + '$');
+                }
+                else {
+                    $('.txt-price').css('display','none');
+                    $('.txt-dis-price').text(data.price + '$');
+                }
                 $('.txt-hotel-name').text(data.productName);
                 $(".txt-order").click(() => {
                     track_buy_now(word, campaignId);
