@@ -116,7 +116,8 @@ function loadTxtPlugin() {
         });
         var dic = {};
         var lowcaseDic = {};
-        var mainUrl = 'https://txtrider.co/getAmazonUrl/';
+        //var mainUrl = 'https://txtrider.co/getAmazonUrl/';
+        var mainUrl = 'https://server.txtrider.com/getAmazonUrl/';
         let payLoad = {
             // url: window.location.href
             url:'http://www.milesandaway.online/%d7%9e%d7%9c%d7%95%d7%a0%d7%95%d7%aa-%d7%a8%d7%95%d7%9e%d7%a0%d7%98%d7%99%d7%99%d7%9d-%d7%91%d7%a4%d7%a8%d7%99%d7%96/'
