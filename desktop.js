@@ -634,6 +634,7 @@ function loadTxtPlugin() {
                     $('.txt-container').css('height', '278px');
                 }
                 $('.txt-hotel-name').text(data.productName);
+                $('.txt-hotel-name').attr('title',data.productName);
                 $(".txt-order").click(() => {
                     track_buy_now(word, campaignId);
                     var win = window.open(data.productUrl, '_blank');
