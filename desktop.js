@@ -1,6 +1,6 @@
 let agodaWidgetHtml = `<div class="txt-container" style="width: 250px;height: 300px;background: white;border: 3px solid #5392F9;border-radius: 3px;font-family: 'Open Sans', sans-serif;">
     <div class="txt-header" style="font-weight: bold;display: flex;justify-content: flex-start;align-items: flex-start;flex-direction: column;padding: 10px;font-size: 16px;">
-        <span class="txt-hotel-name">Hotel Name</span>
+        <span class="txt-hotel-name" style="width: 230px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;" >Hotel Name</span>
         <span class="txt-discount" style="background: red;color: white;padding: 5px 10px;font-size: 12px;">71% off today</span>
         <div class="txt-details" style="padding-top:4px;justify-content: flex-end;display: flex;width: 100%;">
             <div class="txt-price-container" style="display: flex;margin-left: 15px;margin-top: 10px;flex-direction: column;">
