@@ -631,7 +631,7 @@ function loadTxtPlugin() {
                 } else {
                     $('.txt-price').css('display', 'none');
                     $('.txt-dis-price').text(data.price + '$');
-                    $('.txt-container').css('height', '278px');
+                    $('.txt-container').css('height', '292px');
                 }
                 $('.txt-hotel-name').text(data.productName);
                 $('.txt-hotel-name').attr('title',data.productName);
