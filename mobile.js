@@ -13,15 +13,18 @@ function loadTxtPlugin() {
     if (debug) {
         success(testMock)
     }
-    $.ajax({
-        type: "POST",
-        url: mainUrl + "/getAmazonUrl",
-        data: {
-            url: this.location.href
-        },
-        success: success,
-        error: error
-    });
+    // $.ajax({
+    //     type: "POST",
+    //     url: mainUrl + "/getAmazonUrl",
+    //     data: {
+    //         // url: this.location.href
+    //         url:'http://www.totallyears.online/the-7-best/'
+    //         // url:'http://www.milesandaway.online/%d7%9e%d7%9c%d7%95%d7%a0%d7%95%d7%aa-%d7%a8%d7%95%d7%9e%d7%a0%d7%98%d7%99%d7%99%d7%9d-%d7%91%d7%a4%d7%a8%d7%99%d7%96/'
+    //         // url: 'http://www.milesandaway.online/9-hotels-for-a-romantic-break-in-paris/'
+    //     },
+    //     success: success,
+    //     error: error
+    // });
 
     var maxAdHtml = `<div id="txtMaxAd">
             <div class="main-add-body">
@@ -207,7 +210,7 @@ function loadTxtPlugin() {
         background-color: #dedad1;
         /* padding-top: 5vh; */
         font-family: 'Raleway', sans-serif;
-        padding: 4vh 15px 0px 4vw;
+        padding: 2vh 10px 0px 10px;
         color: #055292;
         position:relative;
         box-shadow: 0 1px 0px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
@@ -240,7 +243,8 @@ function loadTxtPlugin() {
         display: inline;
         margin-bottom: 10px;
         font-family: 'Roboto', sans-serif;
-        font-size:1.2em;
+        // font-size:1.2em;
+        // font-size:0.8em;
     }
     .txtScoreImg {
         float:left;
@@ -301,7 +305,8 @@ function loadTxtPlugin() {
         margin-right:10px; 
     }
     .txtProductInfo {
-        color: #FF9401;
+        // color: #FF9401;
+        color:black;
         // font-weight: bold;
         line-height: 1;
     }
@@ -309,10 +314,10 @@ function loadTxtPlugin() {
         text-align: center;
         display:none;position: fixed;
         width: 100%;
-        height: 60%;
+        // height: 60%;
         bottom: 0;
         left: 0;
-        background-color:white;
+        background-color:rgba(255,255,255,0.6);
         z-index: 9;
         overflow: scroll;
     }
@@ -465,11 +470,11 @@ function loadTxtPlugin() {
     var lowcaseDic = {};
 
 
-   //var mainUrl = 'https://server.txtrider.com';
-   var mainUrl = 'https://txtrider.co';
+    //var mainUrl = 'https://server.txtrider.com';
+    var mainUrl = 'https://txtrider.co';
 
-    
-   //var mainUrl = 'https://server.txtrider.com';
+
+    //var mainUrl = 'https://server.txtrider.com';
     var mainUrl = 'https://txtrider.co';
     $('head').append('<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">');
     if (debug) {
@@ -480,12 +485,14 @@ function loadTxtPlugin() {
         url: mainUrl + "/getAmazonUrl",
         data: {
             url: window.location.href
-            // url: 'https://milesandaway.com/'
+            // // url: 'http://www.milesandaway.online/%d7%9e%d7%9c%d7%95%d7%a0%d7%95%d7%aa-%d7%a8%d7%95%d7%9e%d7%a0%d7%98%d7%99%d7%99%d7%9d-%d7%91%d7%a4%d7%a8%d7%99%d7%96/'
+            // // url: 'https://milesandaway.com/'
+            // url:'http://www.totallyears.online/the-7-best/'
         },
         success: success,
         error: error
     });
-    let agodaWidgetHtml = `<div id="txtMaxAd" class="txt-container header-wrap-agoda" style="transform: translateX(15vw);overflow: hidden;width: 70vw; border: 3px solid #5392F9;border-top:none;height: 300px;background: white;border-radius:22px 22px 0px 0px;font-family: 'Open Sans', sans-serif;">
+    let agodaWidgetHtml = `<div id="txtMaxAd" class="txt-container header-wrap-agoda" style="transform: translateX(15vw);overflow: hidden;width: 70vw; border: 3px solid #5392F9;border-top:none;height: 400px;background: white;border-radius:22px 22px 0px 0px;font-family: 'Open Sans', sans-serif;">
     <div style="border-top: 40px solid rgb(83, 146, 249);border-radius: 20px 20px 0px 0px;"></div>
     <div class="txt-header " style="background:white;font-weight: bold;display: flex;justify-content: flex-start;align-items: flex-start;flex-direction: column;padding: 10px;font-size: 16px;">
         <span class="txt-hotel-name">Hotel Name</span>
@@ -498,10 +505,10 @@ function loadTxtPlugin() {
             <div class="txt-review-container" style="align-items: stretch;padding-left: 20px;display: flex;width: 50%;flex: 1 0;justify-content: flex-end;">
                 <div class="txt-review" style="font-size: 12px;display: flex;align-items: center;color: #CCAE9A;margin-right: 10px;">1,452 reviews</div>
                 <!-- <div class="txt-tick"></div> -->
-                <div class="txt-score" style="background: #5392F9;color: white;display: flex;justify-content: center;align-items: center;padding: 5px;border-radius: 5px;border-top-left-radius: 0px;">?</div>
+                <div class="txt-score" style="background: #5392F9;color: white;display: flex;justify-content: center;align-items: center;padding: 5px;border-radius: 5px;border-top-left-radius: 0px;width:30px">?</div>
             </div>
         </div>
-        <div class="txt-order" style="align-self: flex-end;background: #5392F9;color: white;cursor:pointer;margin-top: 30px;padding: 5px 10px;border-radius: 5px;font-size: 14px;">Order now</div>
+        <div class="txt-order" style="align-self: flex-end;background: #5392F9;color: white;cursor:pointer;margin-top: 20px;padding: 5px 10px;border-radius: 5px;font-size: 14px;">Order now</div>
     </div>
     <div class="txt-seperator" style="font-size: 14px;text-align: center;border: 1px solid #5392F9;">
         <span class="txt-circle-one" style="color: #ED2122;">●</span>
@@ -510,7 +517,7 @@ function loadTxtPlugin() {
         <span class="txt-circle-four" style="color: #81509F;">●</span>
         <span class="txt-circle-five" style="color: #357FC1;">●</span>
     </div>
-    <img class="txt-hotel-img" style="width: 70vw;height: 120px;object-fit: cover;"/>
+    <img class="txt-hotel-img" style="width: 70vw;height: 180px;object-fit: cover;"/>
 </div>`;
     var maxAdHtml = `<div id="txtMaxAd">
             <div class="main-add-body">
@@ -556,7 +563,7 @@ function loadTxtPlugin() {
                 <!--<div class ="txtReviewText">-->
                 <!--</div>-->
                 <!--<div style="height: 1px; width: 100%; border-bottom: 2px solid rgba(120,180,180,0.1);"></div>-->
-                <div style="font-size: 12px; width: auto; border-radius: 3px; color: rgb(80,80,80); font-family: 'Bitter', serif; margin-left: 1em; padding: 2px;">
+                <div style="font-size: 12px; width: 100%; border-radius: 3px; color: rgb(80,80,80); font-family: 'Bitter', serif;padding: 2px;background-color:white">
                     Powered by
                     <div style="background-color: rgb(80,80,80); color: white; padding: 0 4px; margin: 5px; display: inline; border-radius: 4px;">txtrider</div>
                 </div>
@@ -589,15 +596,14 @@ function loadTxtPlugin() {
         let isAgoda = data && data.website && data.website.campaigns && data.website.campaigns.length > 0 && data.website.campaigns[0] && data.website.campaigns[0].data && data.website.campaigns[0].data.length > 0 && data.website.campaigns[0].data[0].iframe == 'None';
         $(minAdHtml).appendTo("body");
         isAgoda ? $(agodaWidgetHtml).appendTo("body") : $(maxAdHtml).appendTo("body");
-        
+
         $("body").append(minAdHtml);
-        
+
         isAgoda ? $("body").append(agodaWidgetHtml) : $("body").append(maxAdHtml);
 
         minAdElement = $('#txtMinAd');
         maxAdElement = $('#txtMaxAd');
-        if(isAgoda)
-        {
+        if (isAgoda) {
             $('.smallAdHeader').addClass('agoda-bg');
         }
         minAdElement.click(ExpandAd);
@@ -654,10 +660,10 @@ function loadTxtPlugin() {
                     let parent = $(this).parent();
                     let originalWord = lowcaseDic[word];
                     const wordData = dic[word];
-                    const isAgoda = !wordData.iframe || wordData.iframe=='None';
-                    const newHtml=generateHtmlForWord(word, isAgoda, originalWord);
-                    const regex=new RegExp('\\b' + word + '\\b', 'i');
-                    let newText = this.textContent.replace(regex,newHtml );
+                    const isAgoda = !wordData.iframe || wordData.iframe == 'None';
+                    const newHtml = generateHtmlForWord(word, isAgoda, originalWord, wordData.score);
+                    const regex = new RegExp('\\b' + word + '\\b', 'i');
+                    let newText = this.textContent.replace(regex, newHtml);
                     if (newText == this.textContent) {
                         newText = this.textContent.replace(word, newHtml);
                     }
@@ -710,14 +716,18 @@ function loadTxtPlugin() {
             if (dic[originalWord.toLowerCase()]) {
                 score = dic[originalWord.toLowerCase()].score
             }
+            console.log(score);
             currentItem.find('.txtScoreNumber').append(score);
         }
+        console.log("runnning number 1");
         $(window).bind("scroll", onScroll);
     }
 
-    function generateHtmlForWord(word, isAgoda, originalString) {
+    function generateHtmlForWord(word, isAgoda, originalString, score) {
+        const scoreString=score || '';
         if (isAgoda) {
-            return '<span class="findMe" word="' + word + '" style="cursor:pointer"><span style="display:inline-block;"><u>' + originalString + '</u><div style="color: white;line-height: 0.75;border-radius: 5px;background: white;display: inline-flex;align-items: center;margin-left: 5px;display: inline-flex;margin-right: 5px;align-items: center;border: 1px solid orange;"><span style="margin:2px;"><img class="agodaLogo"></span><div style="display:inline-flex;align-items:center;vertical-align: middle; border-radius: 5px;padding:2px;margin-right:1px;font-family:arial;color:orange;background:white;" id="txtCScore">★<span class="txtScore" style="font-size:14px;color:black"></span></div></div></span></span>'
+            return `<span class="findMe" word="${word}" style="cursor:pointer"><span style="display:inline-block;"><u>${originalString}</u><div style="color: white;line-height: 0.75;background: #5392F9;display: inline-flex;align-items: center;margin-left: 5px;display: inline-flex;margin-right: 5px;align-items: center;border: 1px solid black;"><span><img class="agodaLogo" style="padding:2px;background:white;"></span><div style="display:inline-flex;align-items:center;vertical-align: middle; border-radius: 5px;padding:2px;margin-right:1px;font-family:arial;color:orange;" id="txtCScore">★ <span style="color: black;font-size: 12px;width: 10px;text-align: center;
+        }">${scoreString}<span class="txtScore" style="font-size:14px;color:black"></span></div></div></span></span>`
         }
         return '<span class="findMe"  word="' + word + '"><span style="display:inline-block;"><u>' + word +
             '</u>' +
@@ -778,7 +788,8 @@ function loadTxtPlugin() {
             $(".stars").html('');
             for (var i = 0; i < 5; i++) $(".stars").append("<div class='small-star'></div>");
             $(".txtSubName").text(data.subTitle);
-            $(".txtScore").text(data.score);
+            // $(".txtScore").text(data.score);
+            $(".txtScore").text(data.productName);
             $('.txtIframe').attr('src', data.iframe);
             var src = data.image;
             $(".txtScoreImg").attr("src", src);
@@ -802,5 +813,5 @@ function loadTxtPlugin() {
 $(document).ready(function () {
     // Handler for .ready() called.
     console.log('debug is: ' + debug);
-    loadTxtPlugin()
+    loadTxtPlugin();
 });

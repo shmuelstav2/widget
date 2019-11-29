@@ -119,7 +119,8 @@ function loadTxtPlugin() {
         var mainUrl = 'https://txtrider.co/getAmazonUrl/';
         let payLoad = {
              url: window.location.href
-            //url:'http://www.milesandaway.online/%d7%9e%d7%9c%d7%95%d7%a0%d7%95%d7%aa-%d7%a8%d7%95%d7%9e%d7%a0%d7%98%d7%99%d7%99%d7%9d-%d7%91%d7%a4%d7%a8%d7%99%d7%96/'
+            // // url:'http://www.totallyears.online/the-7-best/'
+            // url:'http://www.milesandaway.online/9-hotels-for-a-romantic-break-in-paris/'
         };
         $.post(mainUrl, payLoad, function (data) {
             if (data && data.website && data.website.campaigns && data.website.campaigns.length > 0)
@@ -619,7 +620,8 @@ function loadTxtPlugin() {
                     $('.txt-discount').hide();
                 }
                 $('.txt-hotel-img').attr('src', data.image);
-                $('.txt-score').text(data.HotelData[0] && data.HotelData[0].reviewScore);
+                const calcScore=(data.HotelData[0] && data.HotelData[0].reviewScore) || data.score;
+                $('.txt-score').text(calcScore);
                 $('.txt-review').text(data.reviewsCount + ' reviews');
                 const crossedOutRate = null;
                 if (data.HotelData[0] && data.HotelData[0].crossedOutRate) crossedOutRate = data.HotelData[0].crossedOutRate;
