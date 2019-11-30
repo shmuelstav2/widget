@@ -778,7 +778,8 @@ function loadTxtPlugin() {
                 $('.txt-discount').hide();
             }
             $('.txt-hotel-img').attr('src', data.image);
-            const score = (data.HotelData[0] && data.HotelData[0].reviewScore) || data.score * 2;
+            let score = (data.HotelData[0] && data.HotelData[0].reviewScore) || data.score * 2;
+            score =Number(score).toFixed(2);
             $('.txt-score').text(score);
             $('.txt-review').text(data.reviewsCount + ' reviews');
             const price =data.HotelData[0] && data.HotelData[0].crossedOutRate;
