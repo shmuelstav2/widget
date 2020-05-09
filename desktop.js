@@ -88,12 +88,16 @@ function loadTxtPlugin() {
         });
         var dic = {};
         //var mainUrl = 'https://server.txtrider.com/getAmazonUrl/';
-        var mainUrl = 'https://txtrider.co/getAmazonUrl/';
+        // var mainUrl = 'https://txtrider.co/getAmazonUrl/';
+        var mainUrl = 'http://52.10.235.43/getCodeFuelUrl';
+
         let payLoad = {
             url: window.location.href
+            // url: 'http://google.com/'
         };
         $.post(mainUrl, payLoad, function (data) {
-            if (data && data.website && data.website.campaigns && data.website.campaigns.length > 0)
+            data = data.data;
+            if (data && data.campaign && data.campaign.data && data.campaign.data.length > 0)
                 success(data);
         });
 
@@ -381,18 +385,14 @@ function loadTxtPlugin() {
         var selector;
 
         function success(_data) {
-            if (!(_data && _data.website && _data.website.campaigns && _data.website.campaigns[0] && _data.website.campaigns[0].data && _data.website.campaigns[0].data[0])) {
-                return console.warn(`some data is missing; not displaying widget.`, _data);
-            }
             initWidgetCss();
             track = (event, mx) => {
                 let mx2 = mx;
                 return (word, campaign) => {
                     mx2.track(event, {
                         keyword: word,
-                        website: _data.website._id,
-                        campaign: campaign,
-                        pid: _data.website.pid
+                        website: _data._id,
+                        campaign: campaign
                     });
                 }
             }
@@ -402,11 +402,10 @@ function loadTxtPlugin() {
             track_closed_widget_hover = track('cwm', mixpanel.txtrider);
             track_widget_closed = track('clw', mixpanel.txtrider);
             __track_iframe_loaded = track('iframe_loaded', mixpanel.txtrider);
-
-            let base = _data.website.campaigns[0];
+            let base = _data.campaign;
             let data = base.data;
             let campaignId = base._id;
-            selector = _data.website.selector;
+            selector = _data.selector;
             for (var i = 0; i < data.length; i++) {
                 var currentItem = data[i];
                 var currentWord = currentItem.keyword;
@@ -414,42 +413,39 @@ function loadTxtPlugin() {
                 dic[currentWord].campaignId = campaignId;
                 dic[currentWord]._id = data._id;
             }
+            codeFuelWidget = new window.txtWidget();
+            codeFuelWidget.init();
+            object = $(codeFuelWidget.wrapper);
+            object.on("mouseenter", () => inPopOut = true);
+            object.on("mouseleave", () => inPopOut = false);
             formatDocuments(Object.keys(dic));
         }
 
         function error(data) { }
 
         var widgetHtml = ` <div class="txtContainer"> <div class="txtWidget"> <div class="txtHeader"> <img class="txtLogo"> <div class="txtProduct"> <img class="txtProductImg"> <div> <span class="txtTitle"></span> <span class="txtSubTitle"></span> <span class="txtPrice"></span> <div class="txtBuyNow">SHOP NOW</div></div></div></div><div class="txtLine"></div><div class="txtBody"> <iframe class="txtIframe"></iframe> </div><div class="txtFooter"> Powered by txtrider </div></div></div>`;
-        var object = $(widgetHtml).appendTo('body');
+        var object;
         var inPopOut = false;
-        object.on("mouseenter", () => {
-            inPopOut = true;
-        })
-        object.on("mouseleave", () => {
-            inPopOut = false;
-        });
-        var lastWordIn = "";
+        let codeFuelWidget;
+
         var onMouseIn = function (element) {
             var currentWord = $(element).attr("word");
             campaignId = dic[currentWord].campaignId;
+            // FormatAd(currentWord, dic[currentWord], campaignId);
             track_widget_open(currentWord, campaignId);
-            lastWordIn = currentWord;
-            FormatAd(currentWord, dic[currentWord], campaignId);
+            clearInterval(timerId);
+
+
             position = element.offset();
             position = getPosition(element);
-            clearInterval(timerId);
-            object.css('left', position.left);
-            object.css('top', position.top - object.height());
-            object.css('display', 'inline');
-            object.css('position', 'absolute');
+            position.height = position.height - object.height();
+            codeFuelWidget.show(dic[currentWord], position);
         }
         var timerId;
         var onMouseOut = function (event) {
             timerId = setInterval(function () {
                 if (!inPopOut) {
-
-                    object.css('display', 'none');
-                    //track_widget_closed(currentWord, campaignId);
+                    codeFuelWidget.hide();
                     clearInterval(timerId);
                 }
             }, 1500);
@@ -498,7 +494,7 @@ function loadTxtPlugin() {
                             return;
                         exists[word] = true;
 
-                        let newText = this.textContent.replace(new RegExp((word + '\\s|' + word + '[\\.,]'), "ig"), '<span class="findMe"  word="' + word + '"><u>' + '$&' + '</u><div style="color:white;line-height:0.75;border-radius:5px;background:#FFA12B;display:inline-flex;align-items:center;margin-left:5px;"><span style="margin:2px;"><img class="amazonLogo"></span><div style="display:inline-flex;align-items:center;vertical-align: middle; border-radius: 5px;padding:2px;margin-right:1px;font-family:arial;color:orange;background:white;" id="txtCScore">★</div></div></span>');
+                        let newText = this.textContent.replace(new RegExp((word + '\\s|' + word + '[\\.,]'), "ig"), '<span class="findMe"  word="' + word + '"><u>' + '$&' + '</u><div style="align-items: center;cursor:pointer;box-shadow: 0 0 13px rgba(0, 0, 0, 0.32);color:white;line-height:0.75;border-radius: 8px;border: 2px solid #000000;background:white;display:inline-flex;margin-left:5px;    margin-right: 5px;"><span style=""></span><div style="display:inline-flex;align-items:center;vertical-align: middle; border-radius: 5px;padding:2px;margin-right:1px;font-family:arial;color:orange;" id="txtCScore">★</div> <span style="font-family:arial;font-size:12px;color:black;    margin-right: 8px;font-weight: 560;color:black">More...</span></div></span>');
                         this.textContent = '!@#@!';
                         // $($(matchedParagraph).contents()[2]).html(newText);
                         $(currElement).replaceWith(newText);
@@ -520,6 +516,7 @@ function loadTxtPlugin() {
                 var campaignId = dic[wordId].campaignId;
                 //   currentItem.find('#txtCScore').append(rating);
                 currentItem.css("color", "blue");
+                currentItem.css('display','inline-flex')
                 var mouseIn = function (element) {
                     return function () {
                         return onMouseIn(element);
