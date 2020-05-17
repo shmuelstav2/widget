@@ -438,7 +438,7 @@ function loadTxtPlugin() {
 
             position = element.offset();
             position = getPosition(element);
-            position.height = position.height - object.height();
+            position.height = position.top - object.height();
             codeFuelWidget.show(dic[currentWord], position);
         }
         var timerId;
